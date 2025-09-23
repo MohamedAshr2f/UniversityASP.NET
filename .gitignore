@@ -1,0 +1,49 @@
+# =========================
+# Visual Studio / .NET Core
+# =========================
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio working files
+.vs/
+
+# ASP.NET Core secrets
+secrets.json
+
+# Logs
+*.log
+
+# =========================
+# Entity Framework
+# =========================
+
+# Migration history files (except actual code)
+[Mm]igrations/*.Designer.cs
+[Mm]igrations/*Snapshot.cs
+
+# Keep actual migration .cs files
+# (like 20230918094512_InitialCreate.cs)
+# عشان كده مش حطينا Migrations/ كله
+
+# =========================
+# System / OS
+# =========================
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# =========================
+# Others
+# =========================
+*.dbmdl
+*.jfm
+*.pdb
