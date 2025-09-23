@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Schoo.Core\Schoo.Core.csproj" />
+    <ProjectReference Include="..\School.Core\School.Core.csproj" />
   </ItemGroup>
+
+
 
 </Project>
