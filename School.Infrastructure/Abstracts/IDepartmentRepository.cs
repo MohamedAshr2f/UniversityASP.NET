@@ -1,8 +1,9 @@
 ﻿using School.Data.Entities;
+using School.Infrastructure.InfrastructureBases;
 
 namespace School.Infrastructure.Abstracts
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository : IGenericRepositoryAsync<Department>
     {
         public Task<List<Department>> GetDepartmentListAsync();
     }
