@@ -5,7 +5,7 @@
         public int StudentID { get; set; }
         public string StudentName { get; set; }
         public string DepartmentName { get; set; }
-        public List<SubjectDtos> SubjectDtos { get; set; }
+        public List<SubjectDtos> Subjects { get; set; }
 
     }
     public class SubjectDtos

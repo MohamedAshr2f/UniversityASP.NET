@@ -15,7 +15,7 @@ namespace School.Infrastructure.Repositories
         }
         public async Task<List<Student>> GetStudentsListAsync()
         {
-            var studentList = await _context.Students.ToListAsync();
+            var studentList = await _context.Students.Include(s => s.Department).Include(s => s.StudentSubjects).ThenInclude(ss => ss.Subjects).ToListAsync();
             return studentList;
         }
     }
