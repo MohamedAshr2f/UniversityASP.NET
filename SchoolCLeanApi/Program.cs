@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
+using School.Core;
+using School.Infrastructure;
 using School.Infrastructure.ApplicationContext;
+using School.Service;
 
 namespace SchoolCLeanApi
 {
@@ -19,6 +22,9 @@ namespace SchoolCLeanApi
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
             });
+            #region Dependency
+            builder.Services.AddInfrastructureDependencies().AddServiceDependencies().AddCoreDependencies();
+            #endregion
 
             var app = builder.Build();
 

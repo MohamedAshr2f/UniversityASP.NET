@@ -15,9 +15,7 @@
   <ItemGroup>
     <Folder Include="Features\Students\Command\Handler\" />
     <Folder Include="Features\Students\Command\Models\" />
-    <Folder Include="Features\Students\Query\Handler\" />
-    <Folder Include="Features\Students\Query\Models\" />
-    <Folder Include="Features\Students\Query\Results\" />
+    <Folder Include="Mapping\Students\CommandMapping\" />
   </ItemGroup>
 
   <ItemGroup>
