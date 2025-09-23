@@ -8,6 +8,7 @@ using School.Service.Abstracts;
 namespace School.Core.Features.Students.Query.Handler
 {
     public class StudentQueryHandler : ResponseHandler, IRequestHandler<GetStudentListQuery, Response<List<GetStudentListResponse>>>
+        , IRequestHandler<GetStudentSingleQuery, Response<GetStudentSingleResponse>>
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
@@ -23,6 +24,14 @@ namespace School.Core.Features.Students.Query.Handler
             var studentlist = await _studentService.GetStudentsListAsync();
             var studentlistmapper = _mapper.Map<List<GetStudentListResponse>>(studentlist);
             return Success(studentlistmapper);
+        }
+
+        public async Task<Response<GetStudentSingleResponse>> Handle(GetStudentSingleQuery request, CancellationToken cancellationToken)
+        {
+            var stud = await _studentService.GetStudentByIdAsync(request.Id);
+            var studmapping = _mapper.Map<GetStudentSingleResponse>(stud);
+            return Success(studmapping);
+
         }
     }
 }
