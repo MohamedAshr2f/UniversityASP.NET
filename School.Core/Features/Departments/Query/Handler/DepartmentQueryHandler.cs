@@ -8,6 +8,7 @@ using School.Service.Abstracts;
 namespace School.Core.Features.Departments.Query.Handler
 {
     public class DepartmentQueryHandler : ResponseHandler, IRequestHandler<GetDepartmentListQuery, Response<List<GetDepartmentListResponse>>>
+        , IRequestHandler<GetDepartmentSinglequery, Response<GetDepartmentSingleResponse>>
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentService _departmentService;
@@ -23,6 +24,13 @@ namespace School.Core.Features.Departments.Query.Handler
             var DepartmentList = await _departmentService.GetDepartmentListAsync();
             var DepartmentListMapping = _mapper.Map<List<GetDepartmentListResponse>>(DepartmentList);
             return Success(DepartmentListMapping);
+        }
+
+        public async Task<Response<GetDepartmentSingleResponse>> Handle(GetDepartmentSinglequery request, CancellationToken cancellationToken)
+        {
+            var Dept = await _departmentService.GetDepartmentByIdAsync(request.Id);
+            var DeptMapping = _mapper.Map<GetDepartmentSingleResponse>(Dept);
+            return Success(DeptMapping);
         }
     }
 }
