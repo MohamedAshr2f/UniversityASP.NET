@@ -14,9 +14,18 @@ namespace School.Service.Implementions
             _studentRepository = studentRepository;
         }
 
-        public Task<string> AddStudentAsync(Student student)
+        public async Task<string> AddStudentAsync(Student student)
         {
-            throw new NotImplementedException();
+
+            //Check if student Exist Or Not
+            var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.Name == student.Name);
+            if (studentresult != null)
+            {
+                return "Exist";
+            }
+            //Add Student
+            await _studentRepository.AddAsync(student);
+            return "AddSuccefull";
         }
 
         public async Task<Student> GetStudentByIdAsync(int id)

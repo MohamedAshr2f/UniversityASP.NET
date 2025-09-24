@@ -15,10 +15,7 @@
   <ItemGroup>
     <Folder Include="Features\Departments\Command\Handler\" />
     <Folder Include="Features\Departments\Command\Models\" />
-    <Folder Include="Features\Students\Command\Handler\" />
-    <Folder Include="Features\Students\Command\Models\" />
     <Folder Include="Mapping\Departments\CommandMapping\" />
-    <Folder Include="Mapping\Students\CommandMapping\" />
   </ItemGroup>
 
   <ItemGroup>
