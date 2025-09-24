@@ -1,30 +1,25 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using School.Core.Features.Departments.Query.Models;
 using School.Data.AppMetaData;
+using SchoolCLeanApi.Bases;
 
 namespace SchoolCLeanApi.Controllers
 {
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class DepartmentController : AppController
     {
-        private readonly IMediator _mediator;
 
-        public DepartmentController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
         [HttpGet(Router.DepartmentRouting.List)]
         public async Task<IActionResult> GetDepartmentList()
         {
-            var response = await _mediator.Send(new GetDepartmentListQuery());
-            return Ok(response);
+            var response = await Mediator.Send(new GetDepartmentListQuery());
+            return NewResult(response);
         }
         [HttpGet(Router.DepartmentRouting.GetByID)]
         public async Task<IActionResult> GetDepartmenById([FromRoute] int id)
         {
-            var response = await _mediator.Send(new GetDepartmentSinglequery(id));
-            return Ok(response);
+            var response = await Mediator.Send(new GetDepartmentSinglequery(id));
+            return NewResult(response);
         }
     }
 }

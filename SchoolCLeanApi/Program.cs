@@ -42,7 +42,6 @@ namespace SchoolCLeanApi
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
