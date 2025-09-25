@@ -7,13 +7,14 @@
         {
 
         }
-        public Response<T> Deleted<T>()
+        public Response<T> Deleted<T>(string Message = null)
         {
             return new Response<T>()
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Deleted Successfully"
+                Message = Message == null ? "Deleted Successfully" : Message
+
             };
         }
         public Response<T> Success<T>(T entity, object Meta = null)
@@ -25,6 +26,7 @@
                 Succeeded = true,
                 Message = "Done Successfully",
                 Meta = Meta
+
             };
         }
         public Response<T> Unauthorized<T>()

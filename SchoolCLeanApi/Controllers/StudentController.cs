@@ -29,10 +29,17 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
-        [HttpPost(Router.StudentRouting.Edit)]
+        [HttpPut(Router.StudentRouting.Edit)]
         public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand command)
         {
             var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
+        [HttpDelete(Router.StudentRouting.Delete)]
+        public async Task<IActionResult> DeleteStudent([FromRoute] int id)
+        {
+            var response = await Mediator.Send(new DeleteStudentCommand(id));
             return NewResult(response);
         }
     }

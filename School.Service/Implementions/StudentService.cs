@@ -41,6 +41,13 @@ namespace School.Service.Implementions
             return stud;
 
         }
+        public async Task<Student> GetStudentByIdwithoutAsync(int id)
+        {
+            var stud = await _studentRepository.GetTableNoTracking()
+                .FirstOrDefaultAsync(s => s.StudID == id);
+            return stud;
+
+        }
 
         public async Task<List<Student>> GetStudentsListAsync()
         {
@@ -59,5 +66,24 @@ namespace School.Service.Implementions
             if (student == null) return false;
             return true;
         }
+
+        public async Task<string> DeleteStudentAsync(Student student)
+        {
+            var trans = _studentRepository.BeginTransaction();
+            try
+            {
+                await _studentRepository.DeleteAsync(student);
+                trans.Commit();
+                return "Deleted";
+            }
+            catch (Exception ex)
+            {
+                await trans.RollbackAsync();
+                return "Falied";
+            }
+
+        }
+
+
     }
 }
