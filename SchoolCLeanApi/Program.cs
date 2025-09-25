@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using School.Core;
+using School.Core.Middleware;
 using School.Infrastructure;
 using School.Infrastructure.ApplicationContext;
 using School.Service;
@@ -37,7 +38,7 @@ namespace SchoolCLeanApi
                     options.SwaggerEndpoint("/openapi/v1.json", "api");
                 });
             }
-
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

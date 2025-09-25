@@ -7,5 +7,6 @@ namespace School.Service.Abstracts
         public Task<List<Student>> GetStudentsListAsync();
         public Task<Student> GetStudentByIdAsync(int id);
         public Task<string> AddStudentAsync(Student student);
+        public Task<bool> IsNameExist(string name);
     }
 }

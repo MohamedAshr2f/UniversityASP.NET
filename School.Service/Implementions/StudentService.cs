@@ -18,14 +18,20 @@ namespace School.Service.Implementions
         {
 
             //Check if student Exist Or Not
-            var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.Name == student.Name);
-            if (studentresult != null)
-            {
-                return "Exist";
-            }
+
             //Add Student
             await _studentRepository.AddAsync(student);
             return "AddSuccefull";
+        }
+
+        public async Task<bool> IsNameExist(string name)
+        {
+            var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.Name == name);
+            if (studentresult == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task<Student> GetStudentByIdAsync(int id)
