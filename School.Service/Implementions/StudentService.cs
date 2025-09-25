@@ -16,9 +16,6 @@ namespace School.Service.Implementions
 
         public async Task<string> AddStudentAsync(Student student)
         {
-
-            //Check if student Exist Or Not
-
             //Add Student
             await _studentRepository.AddAsync(student);
             return "AddSuccefull";
@@ -26,6 +23,7 @@ namespace School.Service.Implementions
 
         public async Task<bool> IsNameExist(string name)
         {
+            //Check if student Exist Or Not
             var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.Name == name);
             if (studentresult == null)
             {
@@ -49,5 +47,17 @@ namespace School.Service.Implementions
             return await _studentRepository.GetStudentsListAsync();
         }
 
+        public async Task<string> EditStudentAsync(Student student)
+        {
+            await _studentRepository.UpdateAsync(student);
+            return "Succefull";
+        }
+
+        public async Task<bool> IsNameExistExcludeSelf(string name, int id)
+        {
+            var student = await _studentRepository.GetTableNoTracking().FirstOrDefaultAsync(s => s.Name == name & s.StudID != id);
+            if (student == null) return false;
+            return true;
+        }
     }
 }

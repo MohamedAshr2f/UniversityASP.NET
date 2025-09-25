@@ -67,6 +67,18 @@
                 Meta = Meta
             };
         }
+        public Response<T> Updated<T>(T entity, object Meta = null)
+        {
+            return new Response<T>()
+            {
+                Data = entity,
+                StatusCode = System.Net.HttpStatusCode.Created,
+                Succeeded = true,
+                Message = "Update",
+                Meta = Meta
+            };
+        }
+
 
         public Response<T> UnprocessableEntity<T>(string Message = null)
         {
