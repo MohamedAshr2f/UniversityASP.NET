@@ -21,5 +21,12 @@
             public const string GetByID = Prefix + SignleRoute;
             public const string Create = Prefix + "/Create";
         }
+        public static class SubjectRouting
+        {
+            public const string Prefix = Rule + "Subject";
+            public const string List = Prefix + "/List";
+            public const string GetByID = Prefix + SignleRoute;
+            public const string Create = Prefix + "/Create";
+        }
     }
 }
