@@ -53,6 +53,7 @@ namespace School.Service.Implementions
             return await _studentRepository.GetStudentsListAsync();
         }
 
+
         public async Task<string> EditStudentAsync(Student student)
         {
             await _studentRepository.UpdateAsync(student);
@@ -83,6 +84,19 @@ namespace School.Service.Implementions
 
         }
 
+        public IQueryable<Student> GetStudentsQuerable()
+        {
+            return _studentRepository.GetTableNoTracking().Include(s => s.Department).Include(s => s.StudentSubjects).ThenInclude(ss => ss.Subjects).AsQueryable();
+        }
 
+        public IQueryable<Student> FilterStudentPaginatedQuerable(string search)
+        {
+            var query = GetStudentsQuerable();
+            if (search != null)
+            {
+                query = query.Where(s => s.Name.Contains(search) || s.Address.Contains(search));
+            }
+            return query;
+        }
     }
 }

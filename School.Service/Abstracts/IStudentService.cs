@@ -5,6 +5,8 @@ namespace School.Service.Abstracts
     public interface IStudentService
     {
         public Task<List<Student>> GetStudentsListAsync();
+        public IQueryable<Student> GetStudentsQuerable();
+        public IQueryable<Student> FilterStudentPaginatedQuerable(string search);
         public Task<Student> GetStudentByIdAsync(int id);
         public Task<Student> GetStudentByIdwithoutAsync(int id);
         public Task<string> EditStudentAsync(Student student);

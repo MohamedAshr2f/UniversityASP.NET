@@ -15,7 +15,9 @@
             public const string Create = Prefix + "/Create";
             public const string Edit = Prefix + "/Edit";
             public const string Delete = Prefix + "/Delete";
+            public const string Pagination = Prefix + "/Pagination";
         }
+
         public static class DepartmentRouting
         {
             public const string Prefix = Rule + "Department";

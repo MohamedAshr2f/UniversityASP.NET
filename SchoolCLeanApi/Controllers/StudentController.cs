@@ -42,5 +42,11 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(new DeleteStudentCommand(id));
             return NewResult(response);
         }
+        [HttpGet(Router.StudentRouting.Pagination)]
+        public async Task<IActionResult> GetStudentsPaginationList([FromQuery] GetStudentPaginatedListQuery query)
+        {
+            var resposnse = await Mediator.Send(query);
+            return Ok(resposnse);
+        }
     }
 }
