@@ -14,5 +14,11 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(new GetSubjectsListQuery());
             return NewResult(response);
         }
+        [HttpGet(Router.SubjectRouting.GetByID)]
+        public async Task<IActionResult> GetSubjectsById([FromRoute] int id)
+        {
+            var response = await Mediator.Send(new GetSubjectSingleQuery(id));
+            return NewResult(response);
+        }
     }
 }

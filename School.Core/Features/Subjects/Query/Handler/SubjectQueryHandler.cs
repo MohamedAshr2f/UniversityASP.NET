@@ -8,6 +8,7 @@ using School.Service.Abstracts;
 namespace School.Core.Features.Subjects.Query.Handler
 {
     public class SubjectQueryHandler : ResponseHandler, IRequestHandler<GetSubjectsListQuery, Response<List<GetSubjectsListResponse>>>
+        , IRequestHandler<GetSubjectSingleQuery, Response<GetSubjectSingleResponse>>
     {
         private readonly ISubjectService _subjectService;
         private readonly IMapper _mapper;
@@ -25,6 +26,13 @@ namespace School.Core.Features.Subjects.Query.Handler
             var subjectmapper = _mapper.Map<List<GetSubjectsListResponse>>(subjectlist);
             return Success(subjectmapper);
 
+        }
+
+        public async Task<Response<GetSubjectSingleResponse>> Handle(GetSubjectSingleQuery request, CancellationToken cancellationToken)
+        {
+            var subject = await _subjectService.GetSubjectByIdAsync(request.ID);
+            var subjectmapping = _mapper.Map<GetSubjectSingleResponse>(subject);
+            return Success(subjectmapping);
         }
     }
 }

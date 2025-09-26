@@ -7,6 +7,7 @@ namespace School.Core.Mapping.Subjects
         public SubjectProfile()
         {
             GetSubjectListMapping();
+            GetSubjectSingleMapping();
         }
     }
 }
