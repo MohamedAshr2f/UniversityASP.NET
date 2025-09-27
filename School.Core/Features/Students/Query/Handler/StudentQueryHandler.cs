@@ -46,7 +46,7 @@ namespace School.Core.Features.Students.Query.Handler
                 SubjectName = ss.Subjects.SubjectName,
                 Period = ss.Subjects.Period
             }).ToList());
-            var FilterQuery = _studentService.FilterStudentPaginatedQuerable(request.Search);
+            var FilterQuery = _studentService.FilterStudentPaginatedQuerable(request.Search, request.OrderBy);
             var PaginatedList = await FilterQuery.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return PaginatedList;
 
