@@ -1,9 +1,11 @@
 ﻿using System.Linq.Expressions;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using School.Core.Bases;
 using School.Core.Features.Students.Query.Models;
 using School.Core.Features.Students.Query.Results;
+using School.Core.Resources;
 using School.Core.Wrappers;
 using School.Data.Entities;
 using School.Service.Abstracts;
@@ -16,11 +18,13 @@ namespace School.Core.Features.Students.Query.Handler
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
+        private IStringLocalizer<SharedResource> _stringLocalizer;
 
-        public StudentQueryHandler(IStudentService studentService, IMapper mapper)
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<SharedResource> stringLocalizer)
         {
             _studentService = studentService;
             _mapper = mapper;
+            _stringLocalizer = stringLocalizer;
         }
 
         public async Task<Response<List<GetStudentListResponse>>> Handle(GetStudentListQuery request, CancellationToken cancellationToken)
@@ -33,6 +37,12 @@ namespace School.Core.Features.Students.Query.Handler
         public async Task<Response<GetStudentSingleResponse>> Handle(GetStudentSingleQuery request, CancellationToken cancellationToken)
         {
             var stud = await _studentService.GetStudentByIdAsync(request.Id);
+            if (stud == null)
+            {
+
+                return NotFound<GetStudentSingleResponse>(_stringLocalizer[SharedResourcesKey.NotFound]);
+            }
+
             var studmapping = _mapper.Map<GetStudentSingleResponse>(stud);
             return Success(studmapping);
 

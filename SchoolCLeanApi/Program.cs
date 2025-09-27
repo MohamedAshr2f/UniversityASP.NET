@@ -1,5 +1,8 @@
 
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using School.Core;
 using School.Core.Middleware;
 using School.Infrastructure;
@@ -26,6 +29,29 @@ namespace SchoolCLeanApi
             #region Dependency
             builder.Services.AddInfrastructureDependencies().AddServiceDependencies().AddCoreDependencies();
             #endregion
+            #region Localization
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddLocalization(opt =>
+            {
+                opt.ResourcesPath = "";
+            });
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                List<CultureInfo> supportedCultures = new List<CultureInfo>
+                {
+                new CultureInfo("en-US"),
+                new CultureInfo("de-DE"),
+                new CultureInfo("fr-FR"),
+                new CultureInfo("ar-EG")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
+            #endregion
 
             var app = builder.Build();
 
@@ -41,6 +67,10 @@ namespace SchoolCLeanApi
             app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
 
+            #region Localization Middleware
+            var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
+            #endregion
             app.UseAuthorization();
 
             app.MapControllers();
