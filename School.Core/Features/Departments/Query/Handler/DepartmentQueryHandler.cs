@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using School.Core.Bases;
 using School.Core.Features.Departments.Query.Models;
 using School.Core.Features.Departments.Query.Results;
+using School.Core.Resources;
 using School.Service.Abstracts;
 
 namespace School.Core.Features.Departments.Query.Handler
@@ -12,11 +14,13 @@ namespace School.Core.Features.Departments.Query.Handler
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentService _departmentService;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
 
-        public DepartmentQueryHandler(IMapper mapper, IDepartmentService departmentService)
+        public DepartmentQueryHandler(IMapper mapper, IDepartmentService departmentService, IStringLocalizer<SharedResource> stringLocalizer) : base(stringLocalizer)
         {
             _mapper = mapper;
             _departmentService = departmentService;
+            _stringLocalizer = stringLocalizer;
         }
 
         public async Task<Response<List<GetDepartmentListResponse>>> Handle(GetDepartmentListQuery request, CancellationToken cancellationToken)

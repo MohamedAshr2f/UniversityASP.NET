@@ -18,9 +18,9 @@ namespace School.Core.Features.Students.Query.Handler
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
-        private IStringLocalizer<SharedResource> _stringLocalizer;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
 
-        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<SharedResource> stringLocalizer)
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<SharedResource> stringLocalizer) : base(stringLocalizer)
         {
             _studentService = studentService;
             _mapper = mapper;
@@ -40,7 +40,7 @@ namespace School.Core.Features.Students.Query.Handler
             if (stud == null)
             {
 
-                return NotFound<GetStudentSingleResponse>(_stringLocalizer[SharedResourcesKey.NotFound]);
+                return NotFound<GetStudentSingleResponse>();
             }
 
             var studmapping = _mapper.Map<GetStudentSingleResponse>(stud);

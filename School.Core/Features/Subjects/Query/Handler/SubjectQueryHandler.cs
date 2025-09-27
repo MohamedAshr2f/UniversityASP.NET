@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using School.Core.Bases;
 using School.Core.Features.Subjects.Query.Models;
 using School.Core.Features.Subjects.Query.Results;
+using School.Core.Resources;
 using School.Service.Abstracts;
 
 namespace School.Core.Features.Subjects.Query.Handler
@@ -12,11 +14,13 @@ namespace School.Core.Features.Subjects.Query.Handler
     {
         private readonly ISubjectService _subjectService;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
 
-        public SubjectQueryHandler(ISubjectService subjectService, IMapper mapper)
+        public SubjectQueryHandler(ISubjectService subjectService, IMapper mapper, IStringLocalizer<SharedResource> stringLocalizer) : base(stringLocalizer)
         {
             _subjectService = subjectService;
             _mapper = mapper;
+            _stringLocalizer = stringLocalizer;
         }
 
 
