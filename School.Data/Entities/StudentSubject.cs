@@ -6,7 +6,7 @@ namespace School.Data.Entities
     public class StudentSubject
     {
 
-        //  public int StudSubID { get; set; }
+
         [Key]
         public int StudID { get; set; }
         [Key]
@@ -14,9 +14,11 @@ namespace School.Data.Entities
         public decimal? grade { get; set; }
 
         [ForeignKey("StudID")]
-        public virtual Student Student { get; set; }
+        [InverseProperty("StudentSubject")]
+        public virtual Student? Student { get; set; }
 
         [ForeignKey("SubID")]
-        public virtual Subject Subjects { get; set; }
+        [InverseProperty("StudentsSubjects")]
+        public virtual Subject? Subject { get; set; }
     }
 }

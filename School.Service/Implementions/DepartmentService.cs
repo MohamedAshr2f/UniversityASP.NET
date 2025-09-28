@@ -22,10 +22,10 @@ namespace School.Service.Implementions
         public async Task<Department> GetDepartmentByIdAsync(int id)
         {
             var Dep = await _DepartmentRepository.GetTableNoTracking().Include(d => d.Students)
-                .ThenInclude(s => s.StudentSubjects)
-                .ThenInclude(ss => ss.Subjects)
-                .Include(d => d.DepartmentSubjects)
-                .ThenInclude(ds => ds.Subjects).FirstOrDefaultAsync(d => d.DID == id);
+                .ThenInclude(s => s.StudentSubject)
+                .ThenInclude(ss => ss.Subject)
+                .Include(d => d.departmentsubjects)
+                .ThenInclude(ds => ds.Subject).FirstOrDefaultAsync(d => d.DID == id);
             return Dep;
         }
 

@@ -18,7 +18,7 @@ namespace School.Infrastructure.Repositories
 
         public async Task<List<Subject>> GetSubjectListAsync()
         {
-            var subjectList = await _Subjects.Include(s => s.DepartmetsSubjects).ThenInclude(d => d.Department).ToListAsync();
+            var subjectList = await _Subjects.Include(s => s.departmentsubjects).ThenInclude(d => d.Department).ToListAsync();
             return subjectList;
         }
     }

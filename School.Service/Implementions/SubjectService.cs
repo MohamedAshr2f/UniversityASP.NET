@@ -23,7 +23,7 @@ namespace School.Service.Implementions
         }
         public async Task<Subject> GetSubjectByIdAsync(int id)
         {
-            var subject = await _subjectRepository.GetTableNoTracking().Include(s => s.DepartmetsSubjects)
+            var subject = await _subjectRepository.GetTableNoTracking().Include(s => s.departmentsubjects)
                 .ThenInclude(ds => ds.Department).FirstOrDefaultAsync(s => s.SubID == id);
             return subject;
         }

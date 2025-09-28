@@ -11,8 +11,10 @@ namespace School.Data.Entities
         [Key]
         public int SubId { get; set; }
         [ForeignKey(nameof(InsId))]
+        [InverseProperty("Ins_Subjects")]
         public Instructor? instructor { get; set; }
         [ForeignKey(nameof(SubId))]
-        public Subject? subject { get; set; }
+        [InverseProperty("Ins_Subjects")]
+        public Subject? Subject { get; set; }
     }
 }

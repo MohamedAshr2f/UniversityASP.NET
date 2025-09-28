@@ -10,7 +10,7 @@ namespace School.Data.Entities
         public Department()
         {
             Students = new HashSet<Student>();
-            DepartmentSubjects = new HashSet<DepartmentSubject>();
+            departmentsubjects = new HashSet<DepartmentSubject>();
             Instructors = new HashSet<Instructor>();
         }
         [Key]
@@ -26,7 +26,7 @@ namespace School.Data.Entities
         [InverseProperty("Department")]
         public virtual ICollection<Student> Students { get; set; }
         [InverseProperty("Department")]
-        public virtual ICollection<DepartmentSubject> DepartmentSubjects { get; set; }
+        public virtual ICollection<DepartmentSubject> departmentsubjects { get; set; }
         [InverseProperty("department")]
         public virtual ICollection<Instructor> Instructors { get; set; }
 

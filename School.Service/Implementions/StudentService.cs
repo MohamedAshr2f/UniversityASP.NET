@@ -45,8 +45,8 @@ namespace School.Service.Implementions
         public async Task<Student> GetStudentByIdAsync(int id)
         {
             var stud = await _studentRepository.GetTableNoTracking().Include(s => s.Department)
-                 .Include(s => s.StudentSubjects)
-                 .ThenInclude(ss => ss.Subjects)
+                 .Include(s => s.StudentSubject)
+                 .ThenInclude(ss => ss.Subject)
                  .FirstOrDefaultAsync(s => s.StudID == id);
             return stud;
 
@@ -102,7 +102,7 @@ namespace School.Service.Implementions
 
         public IQueryable<Student> GetStudentsQuerable()
         {
-            return _studentRepository.GetTableNoTracking().Include(s => s.Department).Include(s => s.StudentSubjects).ThenInclude(ss => ss.Subjects).AsQueryable();
+            return _studentRepository.GetTableNoTracking().Include(s => s.Department).Include(s => s.StudentSubject).ThenInclude(ss => ss.Subject).AsQueryable();
         }
 
         public IQueryable<Student> FilterStudentPaginatedQuerable(string search, StudentOrderingEnum orderingEnum)

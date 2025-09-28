@@ -9,7 +9,7 @@ namespace School.Core.Mapping.Subjects
         {
             CreateMap<Subject, GetSubjectsListResponse>().ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.SubID))
                  .ForMember(dest => dest.Name, op => op.MapFrom(src => src.Localize(src.SubjectNameEn, src.SubjectNameAr)))
-                 .ForMember(dest => dest.Department, op => op.MapFrom(src => src.DepartmetsSubjects));
+                 .ForMember(dest => dest.Department, op => op.MapFrom(src => src.departmentsubjects));
 
             CreateMap<DepartmentSubject, DepartmentDto>().ForMember(dest => dest.DepartmentName, op => op.MapFrom(src => src.Department.Localize(src.Department.DNameEn, src.Department.DNameAr)));
         }
