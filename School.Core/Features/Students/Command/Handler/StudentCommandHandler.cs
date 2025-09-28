@@ -46,7 +46,7 @@ namespace School.Core.Features.Students.Command.Handler
             if (student == null) return NotFound<string>();
 
             //mapping Between request and student
-            var studentmapping = _mapper.Map<Student>(request);
+            var studentmapping = _mapper.Map(request, student);
 
             //Call service that make Edit
             var result = await _studentService.EditStudentAsync(studentmapping);

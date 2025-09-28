@@ -21,7 +21,17 @@ namespace School.Service.Implementions
             return "AddSuccefull";
         }
 
-        public async Task<bool> IsNameExist(string name)
+        public async Task<bool> IsNameARExist(string name)
+        {
+            //Check if student Exist Or Not
+            var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.NameAr == name);
+            if (studentresult == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        public async Task<bool> IsNameENExist(string name)
         {
             //Check if student Exist Or Not
             var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.NameEn == name);

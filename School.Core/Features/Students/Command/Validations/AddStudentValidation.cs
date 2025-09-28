@@ -20,9 +20,13 @@ namespace School.Core.Features.Students.Command.Validations
         }
         public void ApplyValidationRules()
         {
-            RuleFor(s => s.Name).NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKey.NotEmpty])
+            RuleFor(s => s.NameAr).NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKey.NotEmpty])
                 .NotNull().WithMessage("Name Must be Not Null")
                 .MaximumLength(100).WithMessage(_stringLocalizer[SharedResourcesKey.MaxLengthis100]);
+
+            RuleFor(s => s.NameEn).NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKey.NotEmpty])
+           .NotNull().WithMessage("Name Must be Not Null")
+           .MaximumLength(100).WithMessage(_stringLocalizer[SharedResourcesKey.MaxLengthis100]);
 
             RuleFor(s => s.Address).NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKey.NotEmpty])
                 .NotNull().WithMessage("{PropertyValue} Name Must be Not Null")
@@ -30,9 +34,13 @@ namespace School.Core.Features.Students.Command.Validations
         }
         public void CustomValidation()
         {
-            RuleFor(x => x.Name)
-                .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameExist(Key))
-                .WithMessage("Name Is Exist");
+            RuleFor(x => x.NameAr)
+                .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameARExist(Key))
+                .WithMessage(_stringLocalizer[SharedResourcesKey.IsExist]);
+
+            RuleFor(x => x.NameEn)
+                .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameENExist(Key))
+                .WithMessage(_stringLocalizer[SharedResourcesKey.IsExist]);
         }
     }
 }
