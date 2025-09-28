@@ -13,7 +13,7 @@ namespace School.Core.Mapping.Students
                  .ForMember(dest => dest.Subjects, op => op.MapFrom(src => src.StudentSubjects));
 
 
-            CreateMap<StudentSubject, SubjectDto>().ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.StudSubID))
+            CreateMap<StudentSubject, SubjectDto>().ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.SubID))
                           .ForMember(dest => dest.Name, op => op.MapFrom(src => src.Subjects.Localize(src.Subjects.SubjectNameEn, src.Subjects.SubjectNameAr)));
         }
     }

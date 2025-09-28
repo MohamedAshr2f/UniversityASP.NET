@@ -6,7 +6,12 @@ namespace School.Data.Entities
 {
     public class Student : GeneralLocalizableEntity
     {
+        public Student()
+        {
+            StudentSubjects = new List<StudentSubject>();
+        }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudID { get; set; }
         [StringLength(200)]
         public string NameAr { get; set; }
@@ -15,7 +20,7 @@ namespace School.Data.Entities
         [StringLength(500)]
         public string Address { get; set; }
         [StringLength(500)]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         public int? DID { get; set; }
 
         [ForeignKey("DID")]

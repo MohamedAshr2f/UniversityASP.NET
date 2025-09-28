@@ -5,9 +5,10 @@ namespace School.Data.Entities
 {
     public class DepartmentSubject
     {
+        // public int DeptSubID { get; set; }
         [Key]
-        public int DeptSubID { get; set; }
         public int DID { get; set; }
+        [Key]
         public int SubID { get; set; }
 
         [ForeignKey("DID")]

@@ -12,7 +12,7 @@ namespace School.Core.Mapping.Departments
                .ForMember(dest => dest.SubjectDtos, op => op.MapFrom(src => src.DepartmentSubjects));
 
             CreateMap<DepartmentSubject, SubjectDtos>()
-              .ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.DeptSubID))
+              .ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.SubID))
               .ForMember(dest => dest.Name, op => op.MapFrom(src => src.Subjects.Localize(src.Subjects.SubjectNameEn, src.Subjects.SubjectNameAr)));
 
 
@@ -21,7 +21,7 @@ namespace School.Core.Mapping.Departments
                 .ForMember(dest => dest.subjectDtos, op => op.MapFrom(src => src.StudentSubjects));
 
             CreateMap<StudentSubject, SubjectDtos>()
-                .ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.StudSubID))
+                .ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.SubID))
                 .ForMember(dest => dest.Name, op => op.MapFrom(src => src.Subjects.Localize(src.Subjects.SubjectNameEn, src.Subjects.SubjectNameAr)));
 
 
