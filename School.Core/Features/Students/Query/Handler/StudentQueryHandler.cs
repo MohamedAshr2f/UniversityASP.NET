@@ -50,10 +50,10 @@ namespace School.Core.Features.Students.Query.Handler
 
         public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.StudID, e.Name, e.Address, e.Department.DName, e.StudentSubjects.Select(ss => new Subject
+            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.StudID, e.Localize(e.NameEn, e.NameAr), e.Address, e.Department.Localize(e.Department.DNameEn, e.Department.DNameAr), e.StudentSubjects.Select(ss => new Subject
             {
                 SubID = ss.Subjects.SubID,
-                SubjectName = ss.Subjects.SubjectName,
+                SubjectNameEn = ss.Subjects.Localize(ss.Subjects.SubjectNameEn, ss.Subjects.SubjectNameAr),
                 Period = ss.Subjects.Period
             }).ToList());
             var FilterQuery = _studentService.FilterStudentPaginatedQuerable(request.Search, request.OrderBy);

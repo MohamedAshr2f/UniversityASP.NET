@@ -13,8 +13,6 @@ namespace School.Core.Features.Students.Command.Handler
         IRequestHandler<AddStudentCommand, Response<string>>,
         IRequestHandler<EditStudentCommand, Response<string>>,
         IRequestHandler<DeleteStudentCommand, Response<string>>
-
-
     {
         private readonly IMapper _mapper;
         private readonly IStudentService _studentService;
@@ -34,7 +32,7 @@ namespace School.Core.Features.Students.Command.Handler
             var stud = await _studentService.AddStudentAsync(studentmapper);
             if (stud == "AddSuccefull")
             {
-                return Created(stud);
+                return Created("");
             }
             return BadRequest<string>();
         }
@@ -56,7 +54,7 @@ namespace School.Core.Features.Students.Command.Handler
             //return response
             if (result == "Succefull")
             {
-                return Updated(result);
+                return Updated("");
             }
             else
             {

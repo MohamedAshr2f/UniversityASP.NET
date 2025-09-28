@@ -7,7 +7,7 @@ namespace School.Core.Mapping.Departments
     {
         public void AddDepartmentMapping()
         {
-            CreateMap<AddDepartmentCommand, Department>().ForMember(dest => dest.DName, op => op.MapFrom(src => src.DepartmentName));
+            CreateMap<AddDepartmentCommand, Department>().ForMember(dest => dest.DNameEn, op => op.MapFrom(src => src.DepartmentName));
         }
     }
 }

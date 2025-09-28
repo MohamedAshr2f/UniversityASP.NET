@@ -8,10 +8,10 @@ namespace School.Core.Mapping.Subjects
         public void GetSubjectListMapping()
         {
             CreateMap<Subject, GetSubjectsListResponse>().ForMember(dest => dest.SubjectID, op => op.MapFrom(src => src.SubID))
-                 .ForMember(dest => dest.Name, op => op.MapFrom(src => src.SubjectName))
+                 .ForMember(dest => dest.Name, op => op.MapFrom(src => src.Localize(src.SubjectNameEn, src.SubjectNameAr)))
                  .ForMember(dest => dest.Department, op => op.MapFrom(src => src.DepartmetsSubjects));
 
-            CreateMap<DepartmentSubject, DepartmentDto>().ForMember(dest => dest.DepartmentName, op => op.MapFrom(src => src.Department.DName));
+            CreateMap<DepartmentSubject, DepartmentDto>().ForMember(dest => dest.DepartmentName, op => op.MapFrom(src => src.Department.Localize(src.Department.DNameEn, src.Department.DNameAr)));
         }
     }
 }

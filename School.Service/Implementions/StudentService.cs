@@ -24,7 +24,7 @@ namespace School.Service.Implementions
         public async Task<bool> IsNameExist(string name)
         {
             //Check if student Exist Or Not
-            var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.Name == name);
+            var studentresult = _studentRepository.GetTableNoTracking().FirstOrDefault(s => s.NameEn == name);
             if (studentresult == null)
             {
                 return false;
@@ -63,7 +63,7 @@ namespace School.Service.Implementions
 
         public async Task<bool> IsNameExistExcludeSelf(string name, int id)
         {
-            var student = await _studentRepository.GetTableNoTracking().FirstOrDefaultAsync(s => s.Name == name & s.StudID != id);
+            var student = await _studentRepository.GetTableNoTracking().FirstOrDefaultAsync(s => s.NameEn == name & s.StudID != id);
             if (student == null) return false;
             return true;
         }
@@ -95,7 +95,7 @@ namespace School.Service.Implementions
             var query = GetStudentsQuerable();
             if (search != null)
             {
-                query = query.Where(s => s.Name.Contains(search) || s.Address.Contains(search));
+                query = query.Where(s => s.Localize(s.NameEn, s.NameAr).Contains(search) || s.Address.Contains(search));
             }
             switch (orderingEnum)
             {
@@ -104,13 +104,13 @@ namespace School.Service.Implementions
                     break;
 
                 case StudentOrderingEnum.StudentName:
-                    query = query.OrderBy(x => x.Name);
+                    query = query.OrderBy(x => x.Localize(x.NameEn, x.NameAr));
                     break;
                 case StudentOrderingEnum.Address:
                     query = query.OrderBy(x => x.Address);
                     break;
                 case StudentOrderingEnum.DepartmentName:
-                    query = query.OrderBy(x => x.Department.DName);
+                    query = query.OrderBy(x => x.Department.Localize(x.Department.DNameEn, x.Department.DNameAr));
                     break;
             }
 
