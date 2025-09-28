@@ -71,13 +71,18 @@ namespace School.Service.Implementions
             return "Succefull";
         }
 
-        public async Task<bool> IsNameExistExcludeSelf(string name, int id)
+        public async Task<bool> IsNameENExistExcludeSelf(string name, int id)
         {
             var student = await _studentRepository.GetTableNoTracking().FirstOrDefaultAsync(s => s.NameEn == name & s.StudID != id);
             if (student == null) return false;
             return true;
         }
-
+        public async Task<bool> IsNameARExistExcludeSelf(string name, int id)
+        {
+            var student = await _studentRepository.GetTableNoTracking().FirstOrDefaultAsync(s => s.NameAr == name & s.StudID != id);
+            if (student == null) return false;
+            return true;
+        }
         public async Task<string> DeleteStudentAsync(Student student)
         {
             var trans = _studentRepository.BeginTransaction();
