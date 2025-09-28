@@ -6,5 +6,6 @@ namespace School.Service.Abstracts
     {
         public Task<List<Department>> GetDepartmentListAsync();
         public Task<Department> GetDepartmentByIdAsync(int id);
+        public Task<string> AddDepartmentAsync(Department department);
     }
 }

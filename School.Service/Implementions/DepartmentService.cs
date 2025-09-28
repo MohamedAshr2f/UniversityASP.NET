@@ -13,6 +13,12 @@ namespace School.Service.Implementions
             _DepartmentRepository = DepartmentRepository;
         }
 
+        public async Task<string> AddDepartmentAsync(Department department)
+        {
+            await _DepartmentRepository.AddAsync(department);
+            return "successful";
+        }
+
         public async Task<Department> GetDepartmentByIdAsync(int id)
         {
             var Dep = await _DepartmentRepository.GetTableNoTracking().Include(d => d.Students)

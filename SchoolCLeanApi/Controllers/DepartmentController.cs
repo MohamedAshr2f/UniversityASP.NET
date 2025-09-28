@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using School.Core.Features.Departments.Command.Models;
 using School.Core.Features.Departments.Query.Models;
 using School.Data.AppMetaData;
 using SchoolCLeanApi.Bases;
@@ -19,6 +20,12 @@ namespace SchoolCLeanApi.Controllers
         public async Task<IActionResult> GetDepartmenById([FromRoute] int id)
         {
             var response = await Mediator.Send(new GetDepartmentSinglequery(id));
+            return NewResult(response);
+        }
+        [HttpPost(Router.DepartmentRouting.Create)]
+        public async Task<IActionResult> AddDepartment([FromBody] AddDepartmentCommand command)
+        {
+            var response = await Mediator.Send(command);
             return NewResult(response);
         }
     }
