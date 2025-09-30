@@ -25,6 +25,6 @@ namespace School.Data.Entities
         [InverseProperty("Students")]
         public virtual Department? Department { get; set; }
         [InverseProperty("Student")]
-        public virtual ICollection<StudentSubject> StudentSubject { get; set; }
+        public virtual ICollection<StudentSubject>? StudentSubject { get; set; }
     }
 }

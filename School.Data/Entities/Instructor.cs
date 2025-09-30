@@ -21,7 +21,7 @@ namespace School.Data.Entities
         public int? SupervisorId { get; set; }
         public decimal? Salary { get; set; }
         public string? Image { get; set; }
-        public int DID { get; set; }
+        public int? DID { get; set; }
         [ForeignKey(nameof(DID))]
         [InverseProperty("Instructors")]
         public Department? department { get; set; }
@@ -34,10 +34,10 @@ namespace School.Data.Entities
         [InverseProperty("Instructors")]
         public Instructor? Supervisor { get; set; }
         [InverseProperty("Supervisor")]
-        public virtual ICollection<Instructor> Instructors { get; set; }
+        public virtual ICollection<Instructor>? Instructors { get; set; }
 
         [InverseProperty("instructor")]
-        public virtual ICollection<Ins_Subject> Ins_Subjects { get; set; }
+        public virtual ICollection<Ins_Subject>? Ins_Subjects { get; set; }
     }
 
 }

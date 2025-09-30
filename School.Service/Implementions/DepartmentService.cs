@@ -43,5 +43,37 @@ namespace School.Service.Implementions
                  .Include(d => d.Instructors).ToListAsync();
             return departments;
         }
+
+        public IQueryable<Department> GetDepartmentQuerable()
+        {
+            return _DepartmentRepository.GetTableNoTracking().Include(d => d.Students)
+                 .ThenInclude(s => s.StudentSubject)
+                 .ThenInclude(ss => ss.Subject)
+                 .Include(d => d.departmentsubjects)
+                 .ThenInclude(ds => ds.Subject)
+                 .Include(d => d.Instructor)
+                 .Include(d => d.Instructors).AsQueryable();
+        }
+
+        public IQueryable<Department> FilterDepartmentPaginatedQuerable(string search)
+        {
+            var query = GetDepartmentQuerable();
+            if (search != null)
+            {
+                query = query.Where(d => d.Localize(d.DNameEn, d.DNameAr).Contains(search));
+            }
+            /* switch (orderingEnum)
+             {
+                 case DepartmentOrderingEnum.DepartmentID:
+                     query = query.OrderBy(x => x.DID);
+                     break;
+
+                 case DepartmentOrderingEnum.DepartmentName:
+                     query = query.OrderBy(x => x.Localize(x.DNameEn, x.DNameAr));
+                     break;
+             }*/
+
+            return query;
+        }
     }
 }

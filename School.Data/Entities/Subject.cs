@@ -20,10 +20,10 @@ namespace School.Data.Entities
         public string? SubjectNameEn { get; set; }
         public DateTime? Period { get; set; }
         [InverseProperty("Subject")]
-        public virtual ICollection<StudentSubject> StudentsSubjects { get; set; }
+        public virtual ICollection<StudentSubject>? StudentsSubjects { get; set; }
         [InverseProperty("Subject")]
-        public virtual ICollection<DepartmentSubject> departmentsubjects { get; set; }
+        public virtual ICollection<DepartmentSubject>? departmentsubjects { get; set; }
         [InverseProperty("Subject")]
-        public virtual ICollection<Ins_Subject> Ins_Subjects { get; set; }
+        public virtual ICollection<Ins_Subject>? Ins_Subjects { get; set; }
     }
 }

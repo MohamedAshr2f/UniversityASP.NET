@@ -24,11 +24,11 @@ namespace School.Data.Entities
         public int? InsManager { get; set; }
 
         [InverseProperty("Department")]
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Student>? Students { get; set; }
         [InverseProperty("Department")]
-        public virtual ICollection<DepartmentSubject> departmentsubjects { get; set; }
+        public virtual ICollection<DepartmentSubject>? departmentsubjects { get; set; }
         [InverseProperty("department")]
-        public virtual ICollection<Instructor> Instructors { get; set; }
+        public virtual ICollection<Instructor>? Instructors { get; set; }
 
         [ForeignKey("InsManager")]
         [InverseProperty("departmentManager")]

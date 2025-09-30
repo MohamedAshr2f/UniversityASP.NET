@@ -14,9 +14,6 @@ namespace School.Infrastructure.Repositories
         {
             _departments = context.Set<Department>();
         }
-        public async Task<List<Department>> GetDepartmentListAsync()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

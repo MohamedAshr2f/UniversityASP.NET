@@ -28,5 +28,11 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+        [HttpGet(Router.DepartmentRouting.Pagination)]
+        public async Task<IActionResult> GetDepartmentPaginationList([FromQuery] GetDepartmentPaginatedListQuery query)
+        {
+            var response = await Mediator.Send(query);
+            return Ok(response);
+        }
     }
 }
