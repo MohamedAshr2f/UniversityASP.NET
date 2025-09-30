@@ -1,4 +1,5 @@
 ﻿using School.Data.Entities;
+using School.Data.Enums;
 
 namespace School.Service.Abstracts
 {
@@ -8,7 +9,7 @@ namespace School.Service.Abstracts
         public Task<Department> GetDepartmentByIdAsync(int id);
         public Task<string> AddDepartmentAsync(Department department);
         public IQueryable<Department> GetDepartmentQuerable();
-        public IQueryable<Department> FilterDepartmentPaginatedQuerable(string search);
+        public IQueryable<Department> FilterDepartmentPaginatedQuerable(string search, DepartmentOrderingEnum orderingEnum);
 
     }
 }

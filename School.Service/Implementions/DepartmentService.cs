@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using School.Data.Entities;
+using School.Data.Enums;
 using School.Infrastructure.Abstracts;
 using School.Service.Abstracts;
 
@@ -55,23 +56,23 @@ namespace School.Service.Implementions
                  .Include(d => d.Instructors).AsQueryable();
         }
 
-        public IQueryable<Department> FilterDepartmentPaginatedQuerable(string search)
+        public IQueryable<Department> FilterDepartmentPaginatedQuerable(string search, DepartmentOrderingEnum orderingEnum)
         {
             var query = GetDepartmentQuerable();
             if (search != null)
             {
                 query = query.Where(d => d.Localize(d.DNameEn, d.DNameAr).Contains(search));
             }
-            /* switch (orderingEnum)
-             {
-                 case DepartmentOrderingEnum.DepartmentID:
-                     query = query.OrderBy(x => x.DID);
-                     break;
+            switch (orderingEnum)
+            {
+                case DepartmentOrderingEnum.DepartmentID:
+                    query = query.OrderBy(x => x.DID);
+                    break;
 
-                 case DepartmentOrderingEnum.DepartmentName:
-                     query = query.OrderBy(x => x.Localize(x.DNameEn, x.DNameAr));
-                     break;
-             }*/
+                case DepartmentOrderingEnum.DepartmentName:
+                    query = query.OrderBy(x => x.Localize(x.DNameEn, x.DNameAr));
+                    break;
+            }
 
             return query;
         }
