@@ -5,7 +5,7 @@ using School.Core.Bases;
 
 namespace SchoolCLeanApi.Bases
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     public class AppController : ControllerBase
     {
