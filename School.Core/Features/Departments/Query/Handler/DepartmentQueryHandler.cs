@@ -33,6 +33,10 @@ namespace School.Core.Features.Departments.Query.Handler
         public async Task<Response<GetDepartmentSingleResponse>> Handle(GetDepartmentSinglequery request, CancellationToken cancellationToken)
         {
             var Dept = await _departmentService.GetDepartmentByIdAsync(request.Id);
+            if (Dept == null)
+            {
+                return NotFound<GetDepartmentSingleResponse>();
+            }
             var DeptMapping = _mapper.Map<GetDepartmentSingleResponse>(Dept);
             return Success(DeptMapping);
         }

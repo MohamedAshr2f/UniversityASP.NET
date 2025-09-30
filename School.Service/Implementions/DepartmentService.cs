@@ -25,7 +25,9 @@ namespace School.Service.Implementions
                 .ThenInclude(s => s.StudentSubject)
                 .ThenInclude(ss => ss.Subject)
                 .Include(d => d.departmentsubjects)
-                .ThenInclude(ds => ds.Subject).FirstOrDefaultAsync(d => d.DID == id);
+                .ThenInclude(ds => ds.Subject)
+                 .Include(d => d.Instructor)
+                 .Include(d => d.Instructors).FirstOrDefaultAsync(d => d.DID == id);
             return Dep;
         }
 

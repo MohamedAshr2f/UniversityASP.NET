@@ -3,6 +3,8 @@
     public class GetDepartmentSingleResponse
     {
         public string DepartmentName { get; set; }
+        public string DepartmentManager { get; set; }
+        public List<InstructorDtos> instructordtos { get; set; }
         public List<StudentDtos> StudentDtos { get; set; }
         public List<SubjectDtos> SubjectDtos { get; set; }
 
