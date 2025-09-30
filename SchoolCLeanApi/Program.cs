@@ -52,6 +52,20 @@ namespace SchoolCLeanApi
             });
 
             #endregion
+            #region AllowCORS
+            var CORS = "_cors";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: CORS,
+                                  policy =>
+                                  {
+                                      policy.AllowAnyHeader();
+                                      policy.AllowAnyMethod();
+                                      policy.AllowAnyOrigin();
+                                  });
+            });
+
+            #endregion
 
             var app = builder.Build();
 
@@ -66,11 +80,12 @@ namespace SchoolCLeanApi
             }
             app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
-
+            app.UseCors(CORS);
             #region Localization Middleware
             var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(options.Value);
             #endregion
+
             app.UseAuthorization();
 
             app.MapControllers();
