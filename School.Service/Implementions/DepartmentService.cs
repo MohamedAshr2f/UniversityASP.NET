@@ -61,7 +61,7 @@ namespace School.Service.Implementions
             var query = GetDepartmentQuerable();
             if (search != null)
             {
-                query = query.Where(d => d.Localize(d.DNameEn, d.DNameAr).Contains(search));
+                query = query.Where(d => d.DNameEn.Contains(search));
             }
             switch (orderingEnum)
             {
@@ -70,7 +70,7 @@ namespace School.Service.Implementions
                     break;
 
                 case DepartmentOrderingEnum.DepartmentName:
-                    query = query.OrderBy(x => x.Localize(x.DNameEn, x.DNameAr));
+                    query = query.OrderBy(x => x.DNameEn);
                     break;
             }
 

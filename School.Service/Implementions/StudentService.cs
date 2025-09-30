@@ -110,7 +110,7 @@ namespace School.Service.Implementions
             var query = GetStudentsQuerable();
             if (search != null)
             {
-                query = query.Where(s => s.Localize(s.NameEn, s.NameAr).Contains(search) || s.Address.Contains(search));
+                query = query.Where(s => s.NameEn.Contains(search) || s.Address.Contains(search));
             }
             switch (orderingEnum)
             {
@@ -119,13 +119,13 @@ namespace School.Service.Implementions
                     break;
 
                 case StudentOrderingEnum.StudentName:
-                    query = query.OrderBy(x => x.Localize(x.NameEn, x.NameAr));
+                    query = query.OrderBy(x => x.NameEn);
                     break;
                 case StudentOrderingEnum.Address:
                     query = query.OrderBy(x => x.Address);
                     break;
                 case StudentOrderingEnum.DepartmentName:
-                    query = query.OrderBy(x => x.Department.Localize(x.Department.DNameEn, x.Department.DNameAr));
+                    query = query.OrderBy(x => x.Department.DNameEn);
                     break;
             }
 
