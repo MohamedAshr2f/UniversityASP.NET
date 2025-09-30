@@ -16,11 +16,7 @@ namespace School.Infrastructure.Repositories
         }
         public async Task<List<Department>> GetDepartmentListAsync()
         {
-            return await _departments.Include(d => d.Students)
-                .ThenInclude(s => s.StudentSubject)
-                .ThenInclude(ss => ss.Subject)
-                .Include(d => d.departmentsubjects)
-                .ThenInclude(ds => ds.Subject).AsNoTracking().ToListAsync();
+            throw new NotImplementedException();
         }
     }
 }

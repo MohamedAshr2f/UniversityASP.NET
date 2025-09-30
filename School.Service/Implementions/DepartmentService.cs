@@ -31,7 +31,15 @@ namespace School.Service.Implementions
 
         public async Task<List<Department>> GetDepartmentListAsync()
         {
-            return await _DepartmentRepository.GetDepartmentListAsync();
+            // return await _DepartmentRepository.GetDepartmentListAsync();
+            var departments = await _DepartmentRepository.GetTableNoTracking().Include(d => d.Students)
+                 .ThenInclude(s => s.StudentSubject)
+                 .ThenInclude(ss => ss.Subject)
+                 .Include(d => d.departmentsubjects)
+                 .ThenInclude(ds => ds.Subject)
+                 .Include(d => d.Instructor)
+                 .Include(d => d.Instructors).ToListAsync();
+            return departments;
         }
     }
 }
