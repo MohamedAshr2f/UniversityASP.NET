@@ -80,5 +80,25 @@ namespace School.Service.Implementions
 
             return query;
         }
+
+        public async Task<bool> IsNameARExist(string name)
+        {
+            var dept = _DepartmentRepository.GetTableNoTracking().FirstOrDefault(d => d.DNameAr == name);
+            if (dept == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> IsNameENExist(string name)
+        {
+            var dept = _DepartmentRepository.GetTableNoTracking().FirstOrDefault(d => d.DNameEn == name);
+            if (dept == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

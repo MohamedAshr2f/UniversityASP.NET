@@ -7,5 +7,9 @@ namespace School.Core.Features.Departments.Command.Models
     {
         public string DepartmentNameEn { get; set; }
         public string DepartmentNameAr { get; set; }
+        public AddDepartmentCommand()
+        {
+
+        }
     }
 }
