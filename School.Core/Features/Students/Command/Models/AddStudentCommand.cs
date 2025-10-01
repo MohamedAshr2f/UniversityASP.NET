@@ -10,6 +10,7 @@ namespace School.Core.Features.Students.Command.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public int DepartmentId { get; set; }
+
         public AddStudentCommand()
         {
 

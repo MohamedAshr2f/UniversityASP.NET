@@ -14,5 +14,6 @@
         public const string UnprocessableEntity = "UnprocessableEntity";
         public const string MaxLengthis100 = "MaxLengthis100";
         public const string IsExist = "IsExist";
+        public const string IsNotExist = "IsNotExist";
     }
 }

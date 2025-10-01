@@ -132,6 +132,9 @@
   <data name="IsExist" xml:space="preserve">
     <value>الاسم موجود</value>
   </data>
+  <data name="IsNotExist" xml:space="preserve">
+    <value>غير موجود</value>
+  </data>
   <data name="MaxLengthis100" xml:space="preserve">
     <value>يجب ان لا يذيد طول النص عن 100 </value>
   </data>

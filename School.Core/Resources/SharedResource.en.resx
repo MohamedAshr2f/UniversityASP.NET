@@ -132,6 +132,9 @@
   <data name="IsExist" xml:space="preserve">
     <value>Name Is Exist</value>
   </data>
+  <data name="IsNotExist" xml:space="preserve">
+    <value>Not Exist</value>
+  </data>
   <data name="MaxLengthis100" xml:space="preserve">
     <value>The Max Length is 100</value>
   </data>
@@ -139,10 +142,10 @@
     <value>Name</value>
   </data>
   <data name="NotEmpty" xml:space="preserve">
-    <value />
+    <value>Not Empty</value>
   </data>
   <data name="NotFound" xml:space="preserve">
-    <value>Not      Found</value>
+    <value>Not Found</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>This Field Is Required</value>

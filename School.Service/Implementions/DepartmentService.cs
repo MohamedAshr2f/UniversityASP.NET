@@ -19,6 +19,10 @@ namespace School.Service.Implementions
             await _DepartmentRepository.AddAsync(department);
             return "successful";
         }
+        public async Task<bool> IsDepartmentIdExist(int departmentId)
+        {
+            return await _DepartmentRepository.GetTableNoTracking().AnyAsync(x => x.DID.Equals(departmentId));
+        }
 
         public async Task<Department> GetDepartmentByIdAsync(int id)
         {
