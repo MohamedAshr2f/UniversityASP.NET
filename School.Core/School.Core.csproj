@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Departments\Command\Validations\" />
     <Folder Include="Features\Subjects\Command\" />
     <Folder Include="Mapping\Subjects\CommandMapping\" />
   </ItemGroup>
