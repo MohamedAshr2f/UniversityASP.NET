@@ -9,7 +9,7 @@ namespace School.Core.Features.Students.Query.Results
         public string? Address { get; set; }
         public string DepartmentName { get; set; }
         public List<Subject> Subjects { get; set; }
-        public GetStudentPaginatedListResponse(int studentID, string studentName, string? address, string departmentName, List<Subject> subjects)
+        /*public GetStudentPaginatedListResponse(int studentID, string studentName, string? address, string departmentName, List<Subject> subjects)
         {
             StudentID = studentID;
             StudentName = studentName;
@@ -17,7 +17,7 @@ namespace School.Core.Features.Students.Query.Results
             DepartmentName = departmentName;
             Subjects = subjects;
         }
-
+        */
 
     }
 }

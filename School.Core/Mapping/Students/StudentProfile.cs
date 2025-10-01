@@ -9,5 +9,6 @@ public partial class StudentProfile : Profile
         GetStudentSingleMapping();
         AddStudentMapping();
         EditStudentMapping();
+        GetStudentPaginationListMapping();
     }
 }
