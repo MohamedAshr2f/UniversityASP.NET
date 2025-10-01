@@ -1,15 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using School.Data.Entities.Identity;
+using School.Infrastructure.ApplicationContext;
 
 namespace School.Infrastructure
 {
     public static class ServiceRegisteration
     {
-        public static IServiceCollection AddServiceRegisteration(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddServiceRegisteration(this IServiceCollection services)
         {
-            return services;
 
-            /*services.AddIdentity<User, Role>(option =>
+
+            services.AddIdentity<User, IdentityRole<int>>(option =>
              {
                  // Password settings.
                  option.Password.RequireDigit = true;
@@ -27,10 +29,10 @@ namespace School.Infrastructure
                  // User settings.
                  option.User.AllowedUserNameCharacters =
                  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                 option.User.RequireUniqueEmail = true;
-                 option.SignIn.RequireConfirmedEmail = true;
 
-             }).AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();*/
+
+             }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+            return services;
         }
     }
 }

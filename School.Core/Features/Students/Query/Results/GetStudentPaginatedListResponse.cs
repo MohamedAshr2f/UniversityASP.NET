@@ -1,6 +1,4 @@
-﻿using School.Data.Entities;
-
-namespace School.Core.Features.Students.Query.Results
+﻿namespace School.Core.Features.Students.Query.Results
 {
     public class GetStudentPaginatedListResponse
     {
@@ -8,7 +6,7 @@ namespace School.Core.Features.Students.Query.Results
         public string StudentName { get; set; }
         public string? Address { get; set; }
         public string DepartmentName { get; set; }
-        public List<Subject> Subjects { get; set; }
+        public List<SubjectDtos> Subjects { get; set; }
         /*public GetStudentPaginatedListResponse(int studentID, string studentName, string? address, string departmentName, List<Subject> subjects)
         {
             StudentID = studentID;

@@ -7,7 +7,7 @@ namespace School.Core.Mapping.Students
     {
         public void GetStudentPaginationListMapping()
         {
-            CreateMap<Student, GetStudentListResponse>().ForMember(dest => dest.StudentID, op => op.MapFrom(src => src.StudID))
+            CreateMap<Student, GetStudentPaginatedListResponse>().ForMember(dest => dest.StudentID, op => op.MapFrom(src => src.StudID))
                .ForMember(dest => dest.StudentName, op => op.MapFrom(src => src.Localize(src.NameEn, src.NameAr)))
                .ForMember(dest => dest.DepartmentName, op => op.MapFrom(src => src.Department.Localize(src.Department.DNameEn, src.Department.DNameAr)))
                .ForMember(dest => dest.Subjects, op => op.MapFrom(src => src.StudentSubject));

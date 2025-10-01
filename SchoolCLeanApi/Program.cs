@@ -27,7 +27,9 @@ namespace SchoolCLeanApi
                 options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
             });
             #region Dependency
-            builder.Services.AddInfrastructureDependencies().AddServiceDependencies().AddCoreDependencies();
+            builder.Services.AddInfrastructureDependencies()
+                .AddServiceDependencies()
+                .AddCoreDependencies().AddServiceRegisteration();
             #endregion
             #region Localization
             builder.Services.AddControllersWithViews();
