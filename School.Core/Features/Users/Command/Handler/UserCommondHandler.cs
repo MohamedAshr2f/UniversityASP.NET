@@ -10,6 +10,7 @@ using School.Data.Entities.Identity;
 namespace School.Core.Features.Users.Command.Handler
 {
     public class UserCommondHandler : ResponseHandler, IRequestHandler<AddUserCommand, Response<string>>
+        , IRequestHandler<EditUserCommand, Response<string>>
     {
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResource> _stringLocalizer;
@@ -46,6 +47,23 @@ namespace School.Core.Features.Users.Command.Handler
                 return BadRequest<string>(createResult.Errors.FirstOrDefault().Description);
             }
             return Created("");
+        }
+
+        public async Task<Response<string>> Handle(EditUserCommand request, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByIdAsync(request.ID.ToString());
+            if (user == null)
+            {
+                return BadRequest<string>();
+            }
+            var usermapping = _mapper.Map(request, user);
+
+            var result = await _userManager.UpdateAsync(usermapping);
+            if (!result.Succeeded)
+            {
+                return BadRequest<string>(result.Errors.FirstOrDefault().Description);
+            }
+            return Updated("");
         }
     }
 }
