@@ -14,10 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Subjects\Command\" />
-    <Folder Include="Features\Users\Query\Handler\" />
-    <Folder Include="Features\Users\Query\Models\" />
     <Folder Include="Mapping\Subjects\CommandMapping\" />
-    <Folder Include="Mapping\Users\QueryMapping\" />
   </ItemGroup>
 
   <ItemGroup>
