@@ -129,6 +129,9 @@
   <data name="Deleted" xml:space="preserve">
     <value>Deleted Successfully</value>
   </data>
+  <data name="EmailISExist" xml:space="preserve">
+    <value>Email Is Used Try Another Email</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>Name Is Exist</value>
   </data>
@@ -147,6 +150,9 @@
   <data name="NotFound" xml:space="preserve">
     <value>Not Found</value>
   </data>
+  <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
+    <value>Password and Confirm password not matching</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>This Field Is Required</value>
   </data>
@@ -161,5 +167,8 @@
   </data>
   <data name="Updated" xml:space="preserve">
     <value>Updated Successfully</value>
+  </data>
+  <data name="UserNameIsExist" xml:space="preserve">
+    <value>UserName IS Taken</value>
   </data>
 </root>

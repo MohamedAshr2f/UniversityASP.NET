@@ -34,5 +34,13 @@
             public const string Create = Prefix + "/Create";
             public const string Pagination = Prefix + "/Pagination";
         }
+        public static class UserRouting
+        {
+            public const string Prefix = Rule + "User";
+            public const string List = Prefix + "/List";
+            public const string GetByID = Prefix + SignleRoute;
+            public const string Create = Prefix + "/Create";
+            public const string Pagination = Prefix + "/Pagination";
+        }
     }
 }

@@ -29,7 +29,8 @@ namespace School.Infrastructure
                  // User settings.
                  option.User.AllowedUserNameCharacters =
                  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-
+                 option.User.RequireUniqueEmail = true;
+                 option.SignIn.RequireConfirmedEmail = false;
 
              }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
             return services;

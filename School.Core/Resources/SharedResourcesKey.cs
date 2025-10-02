@@ -15,5 +15,8 @@
         public const string MaxLengthis100 = "MaxLengthis100";
         public const string IsExist = "IsExist";
         public const string IsNotExist = "IsNotExist";
+        public const string PasswordNotEqualConfirmPass = "PasswordNotEqualConfirmPass";
+        public const string EmailISExist = "EmailISExist";
+        public const string UserNameIsExist = "UserNameIsExist";
     }
 }
