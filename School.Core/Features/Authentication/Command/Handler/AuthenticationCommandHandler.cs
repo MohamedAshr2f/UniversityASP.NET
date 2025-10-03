@@ -1,0 +1,52 @@
+﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
+using School.Core.Bases;
+using School.Core.Features.Authentication.Command.Models;
+using School.Core.Resources;
+using School.Data.Entities.Identity;
+using School.Service.Abstracts;
+
+namespace School.Core.Features.Authentication.Command.Handler
+{
+    public class AuthenticationCommandHandler : ResponseHandler, IRequestHandler<SignInCommand, Response<string>>
+    {
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
+        private readonly IAuthenticationService _authenticationService;
+
+
+        public AuthenticationCommandHandler(IAuthenticationService authenticationService, SignInManager<User> signInManager, UserManager<User> userManager, IStringLocalizer<SharedResource> stringLocalizer) : base(stringLocalizer)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _stringLocalizer = stringLocalizer;
+            _authenticationService = authenticationService;
+        }
+        public async Task<Response<string>> Handle(SignInCommand request, CancellationToken cancellationToken)
+        {
+            //Check if user is exist or not
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            //Return The UserName Not Found
+            if (user == null)
+            {
+                return NotFound<string>();
+            }
+            //try To Sign in 
+            // var result=await _userManager.CheckPasswordAsync(user, request.Password);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+            //if Failed Return Passord is wrong
+            if (!result.Succeeded)
+            {
+                return BadRequest<string>(_stringLocalizer[SharedResourcesKey.passwordNOtcorrect]);
+            }
+
+            //Generate Token
+            var accesstoken = await _authenticationService.GetJWTToken(user);
+            //return Token 
+            return Success(accesstoken);
+
+        }
+    }
+}

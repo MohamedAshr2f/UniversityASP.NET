@@ -153,6 +153,9 @@
   <data name="passwordchanged" xml:space="preserve">
     <value>تم تغير كلمة السر بنجاح</value>
   </data>
+  <data name="passwordNOtcorrect" xml:space="preserve">
+    <value>كلمة السر غير صحيحة</value>
+  </data>
   <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
     <value>كلمة السر غير متطابقة</value>
   </data>

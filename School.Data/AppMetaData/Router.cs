@@ -49,5 +49,17 @@
             public const string Pagination = Prefix + "/Pagination";
             public const string ChangePassword = Prefix + "ChangePassword";
         }
+        public static class Authentications
+        {
+            public const string Prefix = Rule + "Authentication";
+            public const string SignIn = Prefix + "/SignIn";
+            public const string RefreshToken = Prefix + "/Refresh-Token";
+            public const string ValidateToken = Prefix + "/Validate-Token";
+            public const string ConfirmEmail = "/Api/Authentication/ConfirmEmail";
+            public const string SendResetPasswordCode = Prefix + "/SendResetPasswordCode";
+            public const string ConfirmResetPasswordCode = Prefix + "/ConfirmResetPasswordCode";
+            public const string ResetPassword = Prefix + "/ResetPassword";
+        }
     }
+
 }

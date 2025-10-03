@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using School.Core.Features.Users.Command.Models;
 using School.Core.Features.Users.Query.Models;
 using School.Data.AppMetaData;
@@ -8,6 +9,7 @@ namespace SchoolCLeanApi.Controllers
 {
 
     [ApiController]
+    [Authorize]
     public class UserController : AppController
     {
         [HttpPost(Router.UserRouting.Create)]

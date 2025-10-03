@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using School.Core.Features.Students.Command.Models;
 using School.Core.Features.Students.Query.Models;
 using School.Data.AppMetaData;
@@ -8,6 +9,7 @@ namespace SchoolCLeanApi.Controllers
 {
 
     [ApiController]
+    [Authorize]
     public class StudentController : AppController
     {
 

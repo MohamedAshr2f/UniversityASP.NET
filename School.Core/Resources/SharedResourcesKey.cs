@@ -19,5 +19,6 @@
         public const string EmailISExist = "EmailISExist";
         public const string UserNameIsExist = "UserNameIsExist";
         public const string passwordchanged = "passwordchanged";
+        public const string passwordNOtcorrect = "passwordNOtcorrect";
     }
 }

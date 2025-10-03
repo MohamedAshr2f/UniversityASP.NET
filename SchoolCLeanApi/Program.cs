@@ -1,4 +1,4 @@
-
+﻿
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +29,7 @@ namespace SchoolCLeanApi
             #region Dependency
             builder.Services.AddInfrastructureDependencies()
                 .AddServiceDependencies()
-                .AddCoreDependencies().AddServiceRegisteration();
+                .AddCoreDependencies().AddServiceRegisteration(builder.Configuration);
             #endregion
             #region Localization
             builder.Services.AddControllersWithViews();
@@ -74,6 +74,7 @@ namespace SchoolCLeanApi
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseSwagger();
                 app.MapOpenApi();
                 app.UseSwaggerUI(options =>
                 {
@@ -87,6 +88,7 @@ namespace SchoolCLeanApi
             var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(options.Value);
             #endregion
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using School.Core.Features.Subjects.Query.Models;
 using School.Data.AppMetaData;
 using SchoolCLeanApi.Bases;
@@ -6,6 +7,7 @@ using SchoolCLeanApi.Bases;
 namespace SchoolCLeanApi.Controllers
 {
     [ApiController]
+    [Authorize]
     public class SubjectController : AppController
     {
         [HttpGet(Router.SubjectRouting.List)]
