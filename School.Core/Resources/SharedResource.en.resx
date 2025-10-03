@@ -150,6 +150,9 @@
   <data name="NotFound" xml:space="preserve">
     <value>Not Found</value>
   </data>
+  <data name="passwordchanged" xml:space="preserve">
+    <value>Password Changed Successful</value>
+  </data>
   <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
     <value>Password and Confirm password not matching</value>
   </data>

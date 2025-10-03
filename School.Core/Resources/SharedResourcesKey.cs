@@ -18,5 +18,6 @@
         public const string PasswordNotEqualConfirmPass = "PasswordNotEqualConfirmPass";
         public const string EmailISExist = "EmailISExist";
         public const string UserNameIsExist = "UserNameIsExist";
+        public const string passwordchanged = "passwordchanged";
     }
 }
