@@ -20,8 +20,10 @@ namespace SchoolCLeanApi
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-            builder.Services.AddOpenApi();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             builder.Services.AddDbContext<Context>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
@@ -75,11 +77,7 @@ namespace SchoolCLeanApi
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.MapOpenApi();
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/openapi/v1.json", "api");
-                });
+                app.UseSwaggerUI();
             }
             app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
