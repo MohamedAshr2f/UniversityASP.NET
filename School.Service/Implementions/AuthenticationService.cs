@@ -2,6 +2,8 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using School.Data.Entities.Identity;
 using School.Data.Helpers;
@@ -13,11 +15,13 @@ namespace School.Service.Implementions
 {
     public class AuthenticationService : IAuthenticationService
     {
+        private readonly UserManager<User> _userManager;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly JwtSettings _jwtSettings;
 
-        public AuthenticationService(IRefreshTokenRepository refreshTokenRepository, JwtSettings jwtSettings)
+        public AuthenticationService(UserManager<User> userManager, IRefreshTokenRepository refreshTokenRepository, JwtSettings jwtSettings)
         {
+            _userManager = userManager;
             _refreshTokenRepository = refreshTokenRepository;
             _jwtSettings = jwtSettings;
 
@@ -63,17 +67,7 @@ namespace School.Service.Implementions
             randomNumberGenerate.GetBytes(randomnumber);
             return Convert.ToBase64String(randomnumber);
         }
-        public List<Claim> GetClaims(User user)
-        {
-            var claims = new List<Claim>()
-           {
-               new Claim(nameof(UserClaimModels.UserName), user.UserName),
-               new Claim(nameof(UserClaimModels.Email), user.Email),
-               new Claim(nameof(UserClaimModels.PhoneNumber), user.PhoneNumber)
 
-           };
-            return claims;
-        }
 
         private async Task<(JwtSecurityToken, string)> GenerateJwtToken(User user)
         {
@@ -88,16 +82,78 @@ namespace School.Service.Implementions
             return (Jwttoken, accessToken);
 
         }
-        public Task<JwtAuthResult> GetRefreshToken(string accesstoken, string refreshtoken)
+        public List<Claim> GetClaims(User user)
+        {
+            var claims = new List<Claim>()
+           {
+               new Claim(nameof(UserClaimModels.UserName), user.UserName),
+               new Claim(nameof(UserClaimModels.Email), user.Email),
+               new Claim(nameof(UserClaimModels.PhoneNumber), user.PhoneNumber),
+               new Claim(nameof(UserClaimModels.ID), user.Id.ToString())
+
+           };
+            return claims;
+        }
+        public async Task<JwtAuthResult> GetRefreshToken(string accesstoken, string refreshtoken)
         {
             //read token to get claims
-
+            var jwtToken = ReadJWTToken(accesstoken);
+            if (jwtToken == null || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature))
+            {
+                throw new SecurityTokenException("Algorithm IS Wrong");
+            }
+            if (jwtToken.ValidTo > DateTime.UtcNow)
+            {
+                throw new SecurityTokenException("TokenIsNotExpired");
+            }
             //get user
+            var userid = jwtToken.Claims.FirstOrDefault(jc => jc.Type == nameof(UserClaimModels.ID)).Value;
 
+            var userRefreshToken = await _refreshTokenRepository.GetTableNoTracking().FirstOrDefaultAsync(u => u.Token == accesstoken
+                                                                                                 && u.RefreshToken == refreshtoken
+                                                                                                 && u.UserId == int.Parse(userid));
+            if (userRefreshToken == null)
+            {
+                throw new SecurityTokenException("Refresh Token Is Not Found");
+            }
             //validation token ,RefreshToken
 
-            //Generate RefreshToken
-            throw new NotImplementedException();
+            if (userRefreshToken.ExpiryDate < DateTime.UtcNow)
+            {
+                userRefreshToken.IsRevoked = true;
+                userRefreshToken.IsUsed = false;
+                await _refreshTokenRepository.UpdateAsync(userRefreshToken);
+                throw new SecurityTokenException("RefreshToken Is Expired");
+            }
+            var user = await _userManager.FindByIdAsync(userid);
+            if (user == null)
+            {
+                throw new SecurityTokenException("USer Is Not Found");
+            }
+            //Generate JwtToken
+
+            var (jwtSecurityToken, newToken) = await GenerateJwtToken(user);
+            //var result = GenerateJwtToken(user);
+
+            var response = new JwtAuthResult();
+            response.AccessToken = newToken;
+            var refreshTokenResult = new RefreshToken();
+            refreshTokenResult.UserName = jwtToken.Claims.FirstOrDefault(jc => jc.Type == nameof(UserClaimModels.UserName)).Value;
+            refreshTokenResult.TokenString = refreshtoken;
+            refreshTokenResult.ExpireAt = userRefreshToken.ExpiryDate;
+            response.refreshToken = refreshTokenResult;
+
+            return response;
+        }
+        public JwtSecurityToken ReadJWTToken(string accessToken)
+        {
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                throw new ArgumentNullException(nameof(accessToken));
+            }
+            var handler = new JwtSecurityTokenHandler();
+            var response = handler.ReadJwtToken(accessToken);
+            return response;
         }
         public async Task<string> ValidateToken(string accessToken)
         {
@@ -111,6 +167,7 @@ namespace School.Service.Implementions
                 ValidAudience = _jwtSettings.Audience,
                 ValidateAudience = _jwtSettings.ValidateAudience,
                 ValidateLifetime = _jwtSettings.ValidateLifeTime,
+
             };
             try
             {
@@ -123,5 +180,7 @@ namespace School.Service.Implementions
             }
             catch (Exception ex) { return ex.Message; }
         }
+
+
     }
 }

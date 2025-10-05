@@ -16,6 +16,15 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+
+
+        [HttpPost(Router.Authentications.RefreshToken)]
+        public async Task<IActionResult> RefreshToken([FromForm] RefreshTokenCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
         [HttpGet(Router.Authentications.ValidateToken)]
         public async Task<IActionResult> ValidateToken([FromQuery] AuthorizeUserQuery query)
         {
