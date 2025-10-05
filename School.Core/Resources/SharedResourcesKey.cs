@@ -20,5 +20,6 @@
         public const string UserNameIsExist = "UserNameIsExist";
         public const string passwordchanged = "passwordchanged";
         public const string passwordNOtcorrect = "passwordNOtcorrect";
+        public const string TokenIsExpired = "TokenIsExpired";
     }
 }

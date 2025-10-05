@@ -11,6 +11,7 @@ using School.Service.Abstracts;
 namespace School.Core.Features.Authentication.Command.Handler
 {
     public class AuthenticationCommandHandler : ResponseHandler, IRequestHandler<SignInCommand, Response<JwtAuthResult>>
+        , IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
@@ -48,6 +49,11 @@ namespace School.Core.Features.Authentication.Command.Handler
             //return Token 
             return Success(accesstoken);
 
+        }
+
+        public Task<Response<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

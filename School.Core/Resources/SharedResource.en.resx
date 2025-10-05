@@ -165,6 +165,9 @@
   <data name="Success" xml:space="preserve">
     <value>operation is done</value>
   </data>
+  <data name="TokenIsExpired" xml:space="preserve">
+    <value>Token is Expird</value>
+  </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>You are not Authorized To Access This Resources</value>
   </data>
