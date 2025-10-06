@@ -49,6 +49,13 @@ namespace School.Core.Features.Users.Command.Handler
             {
                 return BadRequest<string>(createResult.Errors.FirstOrDefault().Description);
             }
+            //ADD Role To USer 
+            var userlist = _userManager.Users.ToList();
+            if (!userlist.Any())
+            {
+                await _userManager.AddToRoleAsync(identityuser, "Admin");
+            }
+            await _userManager.AddToRoleAsync(identityuser, "User");
             return Created("");
         }
 

@@ -25,6 +25,7 @@
         public const string AlgorithmIsWrong = "AlgorithmIsWrong";
         public const string RefreshTokenIsNotFound = "RefreshTokenIsNotFound";
         public const string RefreshTokenIsExpired = "RefreshTokenIsExpired";
+        public const string AddFailed = "AddFailed";
 
 
 

@@ -17,7 +17,7 @@ namespace School.Infrastructure
         {
 
 
-            services.AddIdentity<User, IdentityRole<int>>(option =>
+            services.AddIdentity<User, Role>(option =>
              {
                  // Password settings.
                  option.Password.RequireDigit = true;

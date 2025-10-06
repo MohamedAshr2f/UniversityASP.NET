@@ -7,7 +7,7 @@ using School.Data.Entities.Identity;
 
 namespace School.Infrastructure.ApplicationContext
 {
-    public class Context : IdentityDbContext<User, IdentityRole<int>, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
+    public class Context : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
