@@ -21,5 +21,14 @@
         public const string passwordchanged = "passwordchanged";
         public const string passwordNOtcorrect = "passwordNOtcorrect";
         public const string TokenIsExpired = "TokenIsExpired";
+        public const string TokenIsNotExpired = "TokenIsNotExpired";
+        public const string AlgorithmIsWrong = "AlgorithmIsWrong";
+        public const string RefreshTokenIsNotFound = "RefreshTokenIsNotFound";
+        public const string RefreshTokenIsExpired = "RefreshTokenIsExpired";
+
+
+
+
+
     }
 }
