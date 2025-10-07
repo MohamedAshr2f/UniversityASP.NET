@@ -71,7 +71,7 @@ namespace School.Service.Implementions
 
         private async Task<(JwtSecurityToken, string)> GenerateJwtToken(User user)
         {
-            var claims = GetClaims(user);
+            var claims = await GetClaims(user);
             var Jwttoken = new JwtSecurityToken(
                 _jwtSettings.Issuer,
                 _jwtSettings.Audience,
@@ -82,16 +82,25 @@ namespace School.Service.Implementions
             return (Jwttoken, accessToken);
 
         }
-        public List<Claim> GetClaims(User user)
+        public async Task<List<Claim>> GetClaims(User user)
         {
+            var roles = await _userManager.GetRolesAsync(user);
             var claims = new List<Claim>()
            {
-               new Claim(nameof(UserClaimModels.UserName), user.UserName),
-               new Claim(nameof(UserClaimModels.Email), user.Email),
-               new Claim(nameof(UserClaimModels.PhoneNumber), user.PhoneNumber),
-               new Claim(nameof(UserClaimModels.ID), user.Id.ToString())
+
+                 new Claim(ClaimTypes.Name,user.UserName),
+                new Claim(ClaimTypes.NameIdentifier,user.UserName),
+                new Claim(ClaimTypes.Email,user.Email),
+                new Claim(nameof(UserClaimModels.PhoneNumber), user.PhoneNumber),
+                new Claim(nameof(UserClaimModels.ID), user.Id.ToString())
 
            };
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+
+            }
+
             return claims;
         }
         public async Task<JwtAuthResult> GetRefreshToken(User user, JwtSecurityToken jwtToken, DateTime? expiryDate, string refreshtoken)

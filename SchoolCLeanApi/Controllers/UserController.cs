@@ -9,7 +9,7 @@ namespace SchoolCLeanApi.Controllers
 {
 
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class UserController : AppController
     {
         [HttpPost(Router.UserRouting.Create)]
@@ -30,12 +30,14 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(new GetUserSingle(id));
             return Ok(response);
         }
+
         [HttpPut(Router.UserRouting.Edit)]
         public async Task<IActionResult> EditUser([FromBody] EditUserCommand command)
         {
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete(Router.UserRouting.Delete)]
         public async Task<IActionResult> DeleteUser([FromQuery] int id)
         {
