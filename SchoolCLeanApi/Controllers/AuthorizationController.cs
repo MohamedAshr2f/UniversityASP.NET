@@ -17,5 +17,11 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+        [HttpPut(Router.AuthorizationRouting.Edit)]
+        public async Task<IActionResult> Edit([FromBody] EditRoleCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
     }
 }

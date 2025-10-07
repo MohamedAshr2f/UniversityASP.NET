@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using School.Data.Dtos;
 using School.Data.Entities.Identity;
 using School.Service.Abstracts;
 
@@ -23,6 +24,23 @@ namespace School.Service.Implementions
                 return "Success";
             }
             return "Faild";
+
+        }
+        public async Task<string> EditRoleAsync(EditRequestCommand request)
+        {
+            var role = await _roleManager.FindByIdAsync(request.Id.ToString());
+            if (role == null)
+            {
+                return "notfound";
+            }
+            role.Name = request.RoleName;
+            var result = await _roleManager.UpdateAsync(role);
+            if (result.Succeeded)
+            {
+                return "Success";
+            }
+            var errors = string.Join("-", result.Errors);
+            return errors;
 
         }
         public async Task<bool> RoleIsExist(string rolename)

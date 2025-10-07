@@ -8,6 +8,7 @@ using School.Service.Abstracts;
 namespace School.Core.Features.Authorization.Command.Handler
 {
     public class RoleCommandHandler : ResponseHandler, IRequestHandler<AddRoleCommand, Response<string>>
+        , IRequestHandler<EditRoleCommand, Response<string>>
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IStringLocalizer<SharedResource> _stringLocalizer;
@@ -24,6 +25,15 @@ namespace School.Core.Features.Authorization.Command.Handler
 
             if (result == "Success") return Success("");
             return BadRequest<string>(_stringLocalizer[SharedResourcesKey.AddFailed]);
+        }
+
+        public async Task<Response<string>> Handle(EditRoleCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authorizationService.EditRoleAsync(request);
+            if (result == "notFound") return NotFound<string>();
+            else if (result == "Success") return Success((string)_stringLocalizer[SharedResourcesKey.Updated]);
+            else
+                return BadRequest<string>(result);
         }
     }
 }
