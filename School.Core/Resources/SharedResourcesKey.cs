@@ -26,7 +26,7 @@
         public const string RefreshTokenIsNotFound = "RefreshTokenIsNotFound";
         public const string RefreshTokenIsExpired = "RefreshTokenIsExpired";
         public const string AddFailed = "AddFailed";
-
+        public const string RoleIsUsed = "RoleIsUsed";
 
 
 

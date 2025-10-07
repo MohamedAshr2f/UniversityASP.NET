@@ -8,10 +8,12 @@ namespace School.Service.Implementions
     public class AuthorizationService : IAuthorizationService
     {
         private readonly RoleManager<Role> _roleManager;
+        private readonly UserManager<User> _userManager;
 
-        public AuthorizationService(RoleManager<Role> roleManager)
+        public AuthorizationService(RoleManager<Role> roleManager, UserManager<User> userManager)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
         public async Task<string> AddRoleAsync(string rolename)
         {
@@ -26,6 +28,24 @@ namespace School.Service.Implementions
             return "Faild";
 
         }
+
+        public async Task<string> DeleteRoleAsync(int roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            if (role == null) return "NotFound";
+            //Chech if user has this role or not
+            var users = await _userManager.GetUsersInRoleAsync(role.Name);
+            //return exception 
+            if (users != null && users.Count() > 0) return "Used";
+            //delete
+            var result = await _roleManager.DeleteAsync(role);
+            //success
+            if (result.Succeeded) return "Success";
+            //problem
+            var errors = string.Join("-", result.Errors);
+            return errors;
+        }
+
         public async Task<string> EditRoleAsync(EditRequestCommand request)
         {
             var role = await _roleManager.FindByIdAsync(request.Id.ToString());
