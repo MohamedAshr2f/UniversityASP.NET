@@ -177,6 +177,9 @@
   <data name="RoleIsUsed" xml:space="preserve">
     <value>Role Is Used By Users</value>
   </data>
+  <data name="RoleNotExist" xml:space="preserve">
+    <value>Role Not Exist</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>operation is done</value>
   </data>
