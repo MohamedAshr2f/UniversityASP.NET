@@ -138,11 +138,20 @@
   <data name="EmailISExist" xml:space="preserve">
     <value>الايميل مستخدم حاول مره اخر</value>
   </data>
+  <data name="FailedToAddNewClaims" xml:space="preserve">
+    <value>فشل اضافة صلاحيات جديده</value>
+  </data>
   <data name="FailedToAddNewRoles" xml:space="preserve">
     <value>فشلت عملية اضافة دور جديد</value>
   </data>
+  <data name="FailedToRemoveOldClaims" xml:space="preserve">
+    <value>فشل حذف الصلاحيات</value>
+  </data>
   <data name="FailedToRemoveOldRoles" xml:space="preserve">
     <value>فشلت عملية حذف الدور</value>
+  </data>
+  <data name="FailedToUpdateClaims" xml:space="preserve">
+    <value>فشل عملية تعديل الصلاحيات</value>
   </data>
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>فشلت عملية تعديل دور المستخدم</value>

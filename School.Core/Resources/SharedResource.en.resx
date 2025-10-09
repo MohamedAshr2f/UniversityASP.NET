@@ -138,11 +138,20 @@
   <data name="EmailISExist" xml:space="preserve">
     <value>Email Is Used Try Another Email</value>
   </data>
+  <data name="FailedToAddNewClaims" xml:space="preserve">
+    <value>Failed To Add New Claims</value>
+  </data>
   <data name="FailedToAddNewRoles" xml:space="preserve">
     <value>Failed To Add New Roles</value>
   </data>
+  <data name="FailedToRemoveOldClaims" xml:space="preserve">
+    <value>Failed To Remove Old Claims</value>
+  </data>
   <data name="FailedToRemoveOldRoles" xml:space="preserve">
     <value>Failed To Remove Old Roles</value>
+  </data>
+  <data name="FailedToUpdateClaims" xml:space="preserve">
+    <value>FailedToUpdateClaims</value>
   </data>
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>FailedT o Update UserRoles</value>
