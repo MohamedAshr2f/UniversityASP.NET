@@ -9,7 +9,7 @@ namespace SchoolCLeanApi.Controllers
 {
 
     [ApiController]
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "Admin")]
     public class UserController : AppController
     {
         [HttpPost(Router.UserRouting.Create)]

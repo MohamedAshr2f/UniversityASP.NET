@@ -138,6 +138,15 @@
   <data name="EmailISExist" xml:space="preserve">
     <value>Email Is Used Try Another Email</value>
   </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>Failed To Add New Roles</value>
+  </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>Failed To Remove Old Roles</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>FailedT o Update UserRoles</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>Name Is Exist</value>
   </data>
@@ -197,6 +206,9 @@
   </data>
   <data name="Updated" xml:space="preserve">
     <value>Updated Successfully</value>
+  </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>User Is Not Found</value>
   </data>
   <data name="UserNameIsExist" xml:space="preserve">
     <value>UserName IS Taken</value>

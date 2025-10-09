@@ -138,6 +138,15 @@
   <data name="EmailISExist" xml:space="preserve">
     <value>الايميل مستخدم حاول مره اخر</value>
   </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>فشلت عملية اضافة دور جديد</value>
+  </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>فشلت عملية حذف الدور</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>فشلت عملية تعديل دور المستخدم</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>الاسم موجود</value>
   </data>
@@ -197,6 +206,9 @@
   </data>
   <data name="Updated" xml:space="preserve">
     <value>تم التعديل بنجاح</value>
+  </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>هذا المستخدم غير موجود </value>
   </data>
   <data name="UserNameIsExist" xml:space="preserve">
     <value>اسم المستخدم موجود</value>

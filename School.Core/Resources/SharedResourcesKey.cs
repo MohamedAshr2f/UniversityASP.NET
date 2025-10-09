@@ -28,6 +28,10 @@
         public const string AddFailed = "AddFailed";
         public const string RoleIsUsed = "RoleIsUsed";
         public const string RoleNotExist = "RoleNotExist";
+        public const string UserIsNotFound = "UserIsNotFound";
+        public const string FailedToRemoveOldRoles = "FailedToRemoveOldRoles";
+        public const string FailedToAddNewRoles = "FailedToAddNewRoles";
+        public const string FailedToUpdateUserRoles = "FailedToUpdateUserRoles";
 
 
 
