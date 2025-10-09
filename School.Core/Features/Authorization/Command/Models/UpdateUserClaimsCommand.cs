@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using School.Core.Bases;
+using School.Data.Dtos;
 
 namespace School.Core.Features.Authorization.Command.Models
 {
-    internal class UpdateUserClaimsCommand
+    public class UpdateUserClaimsCommand : UpdateUserClaimsRequest, IRequest<Response<string>>
     {
     }
 }
