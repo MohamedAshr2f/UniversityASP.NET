@@ -60,7 +60,7 @@ namespace School.Service.Implementions
                 var message = $"To Confirm Email Click Link: <a href='{returnUrl}'>Link Of Confirmation</a>";
                 //$"/Api/V1/Authentication/ConfirmEmail?userId={user.Id}&code={code}";
 
-                await _emailService.SendEmailAsync(user.Email, message);
+                await _emailService.SendEmailAsync(user.Email, message, "Confirmation Email");
                 await trans.CommitAsync();
                 return "Success";
             }

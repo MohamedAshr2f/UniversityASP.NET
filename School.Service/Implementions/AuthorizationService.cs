@@ -12,15 +12,19 @@ namespace School.Service.Implementions
 {
     public class AuthorizationService : IAuthorizationService
     {
+        private readonly IEmailService _emailService;
         private readonly Context _context;
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
 
-        public AuthorizationService(Context context, RoleManager<Role> roleManager, UserManager<User> userManager)
+
+        public AuthorizationService(IEmailService emailService, Context context, RoleManager<Role> roleManager, UserManager<User> userManager)
         {
+            _emailService = emailService;
             _context = context;
             _roleManager = roleManager;
             _userManager = userManager;
+
         }
         public async Task<string> AddRoleAsync(string rolename)
         {
@@ -140,6 +144,8 @@ namespace School.Service.Implementions
         {
             return await _roleManager.RoleExistsAsync(rolename);
         }
+
+
 
         public async Task<string> UpdateUserClaims(UpdateUserClaimsRequest request)
         {

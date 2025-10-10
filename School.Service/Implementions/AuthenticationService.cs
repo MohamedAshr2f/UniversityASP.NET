@@ -2,6 +2,8 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using EntityFrameworkCore.EncryptColumn.Interfaces;
+using EntityFrameworkCore.EncryptColumn.Util;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +11,7 @@ using School.Data.Entities.Identity;
 using School.Data.Helpers;
 using School.Data.Results;
 using School.Infrastructure.Abstracts;
+using School.Infrastructure.ApplicationContext;
 using School.Service.Abstracts;
 
 namespace School.Service.Implementions
@@ -18,12 +21,18 @@ namespace School.Service.Implementions
         private readonly UserManager<User> _userManager;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly JwtSettings _jwtSettings;
+        private readonly IEmailService _emailService;
+        private readonly Context _context;
+        private readonly IEncryptionProvider _encryptionProvider;
 
-        public AuthenticationService(UserManager<User> userManager, IRefreshTokenRepository refreshTokenRepository, JwtSettings jwtSettings)
+        public AuthenticationService(IEmailService emailService, Context context, UserManager<User> userManager, IRefreshTokenRepository refreshTokenRepository, JwtSettings jwtSettings)
         {
             _userManager = userManager;
             _refreshTokenRepository = refreshTokenRepository;
             _jwtSettings = jwtSettings;
+            _emailService = emailService;
+            _context = context;
+            _encryptionProvider = new GenerateEncryptionProvider("8a4dcaaec64d412380fe4b02193cd26f");
 
 
         }
@@ -202,6 +211,42 @@ namespace School.Service.Implementions
             if (!confirmEmail.Succeeded)
                 return "ErrorWhenConfirmEmail";
             return "Success";
+        }
+
+        public async Task<string> SendResetPasswordCode(string Email)
+        {
+            var trans = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(Email);
+                if (user == null) return "UserNotFound";
+
+                //Random generator = new Random();
+                //string randomNumber = generator.Next(0, 1000000).ToString("D6");
+                var chars = "0123456789";
+                var random = new Random();
+                var randomNumber = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+
+
+                //update User In Database Code
+                user.Code = randomNumber;
+                var updateResult = await _userManager.UpdateAsync(user);
+                if (!updateResult.Succeeded)
+                    return "ErrorInUpdateUser";
+                var message = "Code To Reset Passsword : " + user.Code;
+                //Send Code To  Email 
+                await _emailService.SendEmailAsync(user.Email, message, "Reset Password");
+                await trans.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                await trans.RollbackAsync();
+                return "Failed";
+            }
+
+
+
         }
 
     }

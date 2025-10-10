@@ -228,6 +228,9 @@
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>رمز الوصول الذي تستخدمة ليس منتهي</value>
   </data>
+  <data name="TryAgainInAnotherTime" xml:space="preserve">
+    <value>جرب مرة اخرى فى وقت اخر</value>
+  </data>
   <data name="TryToRegisterAgain" xml:space="preserve">
     <value>حاول التسجيل مرة اخرى</value>
   </data>

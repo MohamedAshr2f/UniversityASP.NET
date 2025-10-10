@@ -228,6 +228,9 @@
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>Token Is Not Expired</value>
   </data>
+  <data name="TryAgainInAnotherTime" xml:space="preserve">
+    <value>TryAgain In Another Time</value>
+  </data>
   <data name="TryToRegisterAgain" xml:space="preserve">
     <value>TryToRegisterAgain</value>
   </data>

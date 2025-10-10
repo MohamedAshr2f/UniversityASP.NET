@@ -17,7 +17,7 @@ namespace School.Service.Implementions
         }
 
         #endregion
-        public async Task<string> SendEmailAsync(string email, string message)
+        public async Task<string> SendEmailAsync(string email, string message, string? reason)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace School.Service.Implementions
                     };
                     Message.From.Add(new MailboxAddress("Student Affairs", _emailSettings.FromEmail));
                     Message.To.Add(new MailboxAddress("testing", email));
-                    Message.Subject = "University Mail";
+                    Message.Subject = reason == null ? "University Mail" : reason;
                     await client.SendAsync(Message);
                     await client.DisconnectAsync(true);
                 }
