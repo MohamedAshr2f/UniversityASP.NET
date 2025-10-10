@@ -26,6 +26,7 @@ namespace School.Service.Implementions
                 {
                     await client.ConnectAsync(_emailSettings.Host, _emailSettings.Port, true);
                     client.Authenticate(_emailSettings.FromEmail, _emailSettings.Password);
+
                     var bodybuilder = new BodyBuilder
                     {
                         HtmlBody = $"{message}",

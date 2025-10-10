@@ -11,5 +11,6 @@ namespace School.Service.Abstracts
         public Task<JwtAuthResult> GetRefreshToken(User user, JwtSecurityToken jwtToken, DateTime? expiryDate, string refreshToken);
         public Task<string> ValidateToken(string accessToken);
         public JwtSecurityToken ReadJWTToken(string accessToken);
+        public Task<string> ConfirmEmail(int? userId, string? code);
     }
 }

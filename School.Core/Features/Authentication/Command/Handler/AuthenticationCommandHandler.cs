@@ -43,6 +43,9 @@ namespace School.Core.Features.Authentication.Command.Handler
             {
                 return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKey.passwordNOtcorrect]);
             }
+            //confirm email
+            if (!user.EmailConfirmed)
+                return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKey.EmailNotConfirmed]);
 
             //Generate Token
             var accesstoken = await _authenticationService.GetJWTToken(user);

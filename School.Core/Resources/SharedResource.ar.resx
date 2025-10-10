@@ -129,6 +129,9 @@
   <data name="BadRequest" xml:space="preserve">
     <value>هذا الطلب لا يمكن فهمه</value>
   </data>
+  <data name="ConfirmEmailDone" xml:space="preserve">
+    <value>تم تأكيد الايميل</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>تم الاضافة بنجاح</value>
   </data>
@@ -140,6 +143,15 @@
   </data>
   <data name="EmailISExist" xml:space="preserve">
     <value>الايميل مستخدم حاول مره اخر</value>
+  </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>لم يتم تأكيد الايميل</value>
+  </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>حدث خطا اثناء تأكيد الايميل</value>
+  </data>
+  <data name="FaildToAddUser" xml:space="preserve">
+    <value>فشل اضافة المستخدم</value>
   </data>
   <data name="FailedToAddNewClaims" xml:space="preserve">
     <value>فشل اضافة صلاحيات جديده</value>
@@ -215,6 +227,9 @@
   </data>
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>رمز الوصول الذي تستخدمة ليس منتهي</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>حاول التسجيل مرة اخرى</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>لا تملك الصلاحية للوصول لتلك المصادر</value>

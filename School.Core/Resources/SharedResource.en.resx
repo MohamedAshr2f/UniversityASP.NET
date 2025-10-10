@@ -129,6 +129,9 @@
   <data name="BadRequest" xml:space="preserve">
     <value>Request Can't be Understand</value>
   </data>
+  <data name="ConfirmEmailDone" xml:space="preserve">
+    <value>ConfirmEmailDone</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Created Successfully</value>
   </data>
@@ -140,6 +143,15 @@
   </data>
   <data name="EmailISExist" xml:space="preserve">
     <value>Email Is Used Try Another Email</value>
+  </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>EmailNotConfirmed</value>
+  </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>ErrorWhenConfirmEmail</value>
+  </data>
+  <data name="FaildToAddUser" xml:space="preserve">
+    <value>FaildToAddUser</value>
   </data>
   <data name="FailedToAddNewClaims" xml:space="preserve">
     <value>Failed To Add New Claims</value>
@@ -215,6 +227,9 @@
   </data>
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>Token Is Not Expired</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>TryToRegisterAgain</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>You are not Authorized To Access This Resources</value>
