@@ -135,6 +135,9 @@
   <data name="Deleted" xml:space="preserve">
     <value>تم الحذف بنجاح</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>الايميل</value>
+  </data>
   <data name="EmailISExist" xml:space="preserve">
     <value>الايميل مستخدم حاول مره اخر</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="MaxLengthis100" xml:space="preserve">
     <value>يجب ان لا يذيد طول النص عن 100 </value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>الرسالة</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>الاسم</value>
@@ -197,6 +203,9 @@
   </data>
   <data name="RoleNotExist" xml:space="preserve">
     <value>الدور غير موجود</value>
+  </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>فشل ارسال ايميل</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>تمت العملية بنجاح</value>

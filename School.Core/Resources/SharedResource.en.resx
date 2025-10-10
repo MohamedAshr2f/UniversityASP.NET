@@ -135,6 +135,9 @@
   <data name="Deleted" xml:space="preserve">
     <value>Deleted Successfully</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="EmailISExist" xml:space="preserve">
     <value>Email Is Used Try Another Email</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="MaxLengthis100" xml:space="preserve">
     <value>The Max Length is 100</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -197,6 +203,9 @@
   </data>
   <data name="RoleNotExist" xml:space="preserve">
     <value>Role Not Exist</value>
+  </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>Send Email Failed</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>operation is done</value>

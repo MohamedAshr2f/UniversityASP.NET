@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Email\Query\Handler\" />
+    <Folder Include="Features\Email\Query\Models\" />
     <Folder Include="Features\Subjects\Command\" />
     <Folder Include="Mapping\Subjects\CommandMapping\" />
   </ItemGroup>
