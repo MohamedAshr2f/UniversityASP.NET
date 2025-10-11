@@ -1,4 +1,5 @@
 ﻿using School.Data.Entities;
+using School.Data.Entities.Procedures;
 using School.Data.Entities.Views;
 using School.Data.Enums;
 
@@ -15,6 +16,7 @@ namespace School.Service.Abstracts
         public Task<List<ViewDepartment>> GetViewDepartmentDataAsync();
         public IQueryable<Department> GetDepartmentQuerable();
         public IQueryable<Department> FilterDepartmentPaginatedQuerable(string search, DepartmentOrderingEnum orderingEnum);
+        public Task<IReadOnlyList<DepartmentStudentCountProc>> GetDepartmentStudentCountProcs(DepartmentStudentCountProcParameters parameters);
 
     }
 }

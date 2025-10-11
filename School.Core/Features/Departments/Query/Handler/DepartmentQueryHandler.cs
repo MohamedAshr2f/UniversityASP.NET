@@ -8,6 +8,7 @@ using School.Core.Features.Departments.Query.Results;
 using School.Core.Resources;
 using School.Core.Wrappers;
 using School.Data.Entities;
+using School.Data.Entities.Procedures;
 using School.Service.Abstracts;
 
 namespace School.Core.Features.Departments.Query.Handler
@@ -16,6 +17,7 @@ namespace School.Core.Features.Departments.Query.Handler
         , IRequestHandler<GetDepartmentSinglequery, Response<GetDepartmentSingleResponse>>
         , IRequestHandler<GetDepartmentPaginatedListQuery, PaginatedResult<GetDepartmentPaginatedResponse>>
         , IRequestHandler<GetDepartmentStudentListCountQuery, Response<List<GetDepartmentStudentListCountResponse>>>
+         , IRequestHandler<GetDepartmentStudentCountByIDQuery, Response<GetDepartmentStudentCountByIDResponse>>
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentService _departmentService;
@@ -75,6 +77,14 @@ namespace School.Core.Features.Departments.Query.Handler
         {
             var viewDepartmentResult = await _departmentService.GetViewDepartmentDataAsync();
             var result = _mapper.Map<List<GetDepartmentStudentListCountResponse>>(viewDepartmentResult);
+            return Success(result);
+        }
+
+        public async Task<Response<GetDepartmentStudentCountByIDResponse>> Handle(GetDepartmentStudentCountByIDQuery request, CancellationToken cancellationToken)
+        {
+            var parameters = _mapper.Map<DepartmentStudentCountProcParameters>(request);
+            var procResult = await _departmentService.GetDepartmentStudentCountProcs(parameters);
+            var result = _mapper.Map<GetDepartmentStudentCountByIDResponse>(procResult.FirstOrDefault());
             return Success(result);
         }
     }

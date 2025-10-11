@@ -42,5 +42,10 @@ namespace SchoolCLeanApi.Controllers
             var response = await Mediator.Send(new GetDepartmentStudentListCountQuery());
             return Ok(response);
         }
+        [HttpGet(Router.DepartmentRouting.GetDepartmentStudentsCountById)]
+        public async Task<IActionResult> GetDepartmentStudentsCountById([FromRoute] int id)
+        {
+            return NewResult(await Mediator.Send(new GetDepartmentStudentCountByIDQuery(id)));
+        }
     }
 }

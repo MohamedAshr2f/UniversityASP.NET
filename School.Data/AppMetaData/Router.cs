@@ -28,6 +28,7 @@
             public const string Delete = Prefix + "/Delete";
             public const string Pagination = Prefix + "/Pagination";
             public const string GetDepartmentStudentsCount = Prefix + "/GetDepartmentStudentsCount";
+            public const string GetDepartmentStudentsCountById = Prefix + "/GetDepartmentStudentsCountById/{id}";
 
         }
         public static class SubjectRouting
