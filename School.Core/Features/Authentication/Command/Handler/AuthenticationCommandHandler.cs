@@ -13,6 +13,7 @@ namespace School.Core.Features.Authentication.Command.Handler
     public class AuthenticationCommandHandler : ResponseHandler, IRequestHandler<SignInCommand, Response<JwtAuthResult>>
         , IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
         , IRequestHandler<SendResetPasswordCommand, Response<string>>
+        , IRequestHandler<ResetPasswordCommand, Response<string>>
 
     {
         private readonly SignInManager<User> _signInManager;
@@ -91,6 +92,16 @@ namespace School.Core.Features.Authentication.Command.Handler
             }
         }
 
-
+        public async Task<Response<string>> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationService.ResetPassword(request.Email, request.Password);
+            switch (result)
+            {
+                case "UserNotFound": return BadRequest<string>(_stringLocalizer[SharedResourcesKey.UserIsNotFound]);
+                case "Failed": return BadRequest<string>(_stringLocalizer[SharedResourcesKey.InvaildCode]);
+                case "Success": return Success<string>("");
+                default: return BadRequest<string>(_stringLocalizer[SharedResourcesKey.InvaildCode]);
+            }
+        }
     }
 }

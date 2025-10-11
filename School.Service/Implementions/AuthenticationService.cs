@@ -260,5 +260,30 @@ namespace School.Service.Implementions
             return "Failed";
         }
 
+        public async Task<string> ResetPassword(string Email, string Password)
+        {
+            var trans = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(Email);
+                if (user == null) return "UserNotFound";
+                await _userManager.RemovePasswordAsync(user);
+                if (!await _userManager.HasPasswordAsync(user))
+                {
+                    await _userManager.AddPasswordAsync(user, Password);
+                }
+
+                //Send Code To  Email 
+                var message = "Password Changed ";
+                await _emailService.SendEmailAsync(user.Email, message, " Password Changed");
+                await trans.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                await trans.RollbackAsync();
+                return "Failed";
+            }
+        }
     }
 }
