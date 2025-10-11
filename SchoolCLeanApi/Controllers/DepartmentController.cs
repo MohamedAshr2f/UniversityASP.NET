@@ -8,7 +8,7 @@ using SchoolCLeanApi.Bases;
 namespace SchoolCLeanApi.Controllers
 {
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DepartmentController : AppController
     {
 
@@ -34,6 +34,12 @@ namespace SchoolCLeanApi.Controllers
         public async Task<IActionResult> GetDepartmentPaginationList([FromQuery] GetDepartmentPaginatedListQuery query)
         {
             var response = await Mediator.Send(query);
+            return Ok(response);
+        }
+        [HttpGet(Router.DepartmentRouting.GetDepartmentStudentsCount)]
+        public async Task<IActionResult> GetDepartmentStudentsCount()
+        {
+            var response = await Mediator.Send(new GetDepartmentStudentListCountQuery());
             return Ok(response);
         }
     }

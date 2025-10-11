@@ -27,6 +27,8 @@
             public const string Edit = Prefix + "/Edit";
             public const string Delete = Prefix + "/Delete";
             public const string Pagination = Prefix + "/Pagination";
+            public const string GetDepartmentStudentsCount = Prefix + "/GetDepartmentStudentsCount";
+
         }
         public static class SubjectRouting
         {

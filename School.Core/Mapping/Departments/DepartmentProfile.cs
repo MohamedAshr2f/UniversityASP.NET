@@ -9,6 +9,7 @@ namespace School.Core.Mapping.Departments
             GetDepartmentListMapping();
             GetDepartmentSingleMapping();
             AddDepartmentMapping();
+            GetDepartmentStudentCountMapping();
         }
     }
 }

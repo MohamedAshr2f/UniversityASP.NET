@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using School.Data.Entities.Views;
 using School.Infrastructure.Abstracts;
+using School.Infrastructure.Abstracts.Views;
 using School.Infrastructure.Repositories;
+using School.Infrastructure.Repositories.Views;
 
 namespace School.Infrastructure
 {
@@ -12,6 +15,8 @@ namespace School.Infrastructure
             services.AddTransient<IStudentRepository, StudentRepository>();
             services.AddTransient<ISubjectRepository, SubjectRepository>();
             services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddTransient<IViewRepository<ViewDepartment>, ViewDepartmentRepository>();
+
 
             return services;
 

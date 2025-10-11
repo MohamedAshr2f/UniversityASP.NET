@@ -15,6 +15,7 @@ namespace School.Core.Features.Departments.Query.Handler
     public class DepartmentQueryHandler : ResponseHandler, IRequestHandler<GetDepartmentListQuery, Response<List<GetDepartmentListResponse>>>
         , IRequestHandler<GetDepartmentSinglequery, Response<GetDepartmentSingleResponse>>
         , IRequestHandler<GetDepartmentPaginatedListQuery, PaginatedResult<GetDepartmentPaginatedResponse>>
+        , IRequestHandler<GetDepartmentStudentListCountQuery, Response<List<GetDepartmentStudentListCountResponse>>>
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentService _departmentService;
@@ -70,5 +71,11 @@ namespace School.Core.Features.Departments.Query.Handler
             return PaginatedList;
         }
 
+        public async Task<Response<List<GetDepartmentStudentListCountResponse>>> Handle(GetDepartmentStudentListCountQuery request, CancellationToken cancellationToken)
+        {
+            var viewDepartmentResult = await _departmentService.GetViewDepartmentDataAsync();
+            var result = _mapper.Map<List<GetDepartmentStudentListCountResponse>>(viewDepartmentResult);
+            return Success(result);
+        }
     }
 }

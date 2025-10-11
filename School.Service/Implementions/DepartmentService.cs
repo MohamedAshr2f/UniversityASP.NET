@@ -1,16 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using School.Data.Entities;
+using School.Data.Entities.Views;
 using School.Data.Enums;
 using School.Infrastructure.Abstracts;
+using School.Infrastructure.Abstracts.Views;
 using School.Service.Abstracts;
 
 namespace School.Service.Implementions
 {
     public class DepartmentService : IDepartmentService
     {
+        private readonly IViewRepository<ViewDepartment> _viewDepartmentRepository;
         private readonly IDepartmentRepository _DepartmentRepository;
-        public DepartmentService(IDepartmentRepository DepartmentRepository)
+        public DepartmentService(IViewRepository<ViewDepartment> viewDepartmentRepository, IDepartmentRepository DepartmentRepository)
         {
+            _viewDepartmentRepository = viewDepartmentRepository;
             _DepartmentRepository = DepartmentRepository;
         }
 
@@ -99,6 +103,12 @@ namespace School.Service.Implementions
                 return false;
             }
             return true;
+        }
+
+        public async Task<List<ViewDepartment>> GetViewDepartmentDataAsync()
+        {
+            var viewdepartment = await _viewDepartmentRepository.GetTableNoTracking().ToListAsync();
+            return viewdepartment;
         }
     }
 }

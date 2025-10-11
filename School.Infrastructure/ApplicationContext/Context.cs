@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using School.Data.Entities;
 using School.Data.Entities.Identity;
+using School.Data.Entities.Views;
 
 namespace School.Infrastructure.ApplicationContext
 {
@@ -31,6 +32,8 @@ namespace School.Infrastructure.ApplicationContext
         public DbSet<DepartmentSubject> DepartmentSubjects { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }
         public DbSet<UserRefreshToken> UserRefreshToken { get; set; }
-
+        #region Views
+        public DbSet<ViewDepartment> ViewDepartment { get; set; }
+        #endregion
     }
 }
