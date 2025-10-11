@@ -44,6 +44,10 @@
         public const string ErrorWhenConfirmEmail = "ErrorWhenConfirmEmail";
         public const string ConfirmEmailDone = "ConfirmEmailDone";
         public const string TryAgainInAnotherTime = "TryAgainInAnotherTime";
+        public const string InvaildCode = "InvaildCode";
+
+
+
 
 
 

@@ -248,6 +248,17 @@ namespace School.Service.Implementions
 
 
         }
+        public async Task<string> ConfirmResetPassword(string Email, string Code)
+        {
+            var user = await _userManager.FindByEmailAsync(Email);
+            if (user == null) return "UserNotFound";
+
+            if (user.Code == Code)
+            {
+                return "Success";
+            }
+            return "Failed";
+        }
 
     }
 }

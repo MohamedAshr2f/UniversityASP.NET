@@ -10,6 +10,7 @@ namespace School.Core.Features.Authentication.Query.Handler
 {
     public class AuthenticationQueryHandler : ResponseHandler, IRequestHandler<AuthorizeUserQuery, Response<string>>
         , IRequestHandler<ConfirmEmailQuery, Response<string>>
+         , IRequestHandler<ConfirmResetPassword, Response<string>>
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IStringLocalizer<SharedResource> _stringLocalizer;
@@ -35,6 +36,17 @@ namespace School.Core.Features.Authentication.Query.Handler
             if (confirmEmail == "ErrorWhenConfirmEmail")
                 return BadRequest<string>(_stringLocalizer[SharedResourcesKey.ErrorWhenConfirmEmail]);
             return Success<string>(_stringLocalizer[SharedResourcesKey.ConfirmEmailDone]);
+        }
+        public async Task<Response<string>> Handle(ConfirmResetPassword request, CancellationToken cancellationToken)
+        {
+            var response = await _authenticationService.ConfirmResetPassword(request.Email, request.Code);
+            switch (response)
+            {
+                case "UserNotFound": return BadRequest<string>(_stringLocalizer[SharedResourcesKey.UserIsNotFound]);
+                case "Failed": return BadRequest<string>(_stringLocalizer[SharedResourcesKey.InvaildCode]);
+                case "Success": return Success<string>("");
+                default: return BadRequest<string>(_stringLocalizer[SharedResourcesKey.TryAgainInAnotherTime]);
+            }
         }
     }
 }

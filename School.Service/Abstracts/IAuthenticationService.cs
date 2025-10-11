@@ -13,5 +13,6 @@ namespace School.Service.Abstracts
         public JwtSecurityToken ReadJWTToken(string accessToken);
         public Task<string> ConfirmEmail(int? userId, string? code);
         public Task<string> SendResetPasswordCode(string Email);
+        public Task<string> ConfirmResetPassword(string Email, string Code);
     }
 }

@@ -171,6 +171,9 @@
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>فشلت عملية تعديل دور المستخدم</value>
   </data>
+  <data name="InvaildCode" xml:space="preserve">
+    <value>كود خطأ</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>الاسم موجود</value>
   </data>
