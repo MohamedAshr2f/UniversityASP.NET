@@ -83,6 +83,12 @@
             public const string Prefix = Rule + "EmailsRoute";
             public const string SendEmail = Prefix + "/SendEmail";
         }
+        public static class InstructorRouting
+        {
+            public const string Prefix = Rule + "InstructorRouting";
+            public const string GetSalarySummationOfInstructor = Prefix + "/Salary-Summation-Of-Instructor";
+            public const string AddInstructor = Prefix + "/Create";
+        }
     }
 
 }
