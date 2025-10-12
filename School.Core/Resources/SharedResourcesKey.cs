@@ -45,12 +45,10 @@
         public const string ConfirmEmailDone = "ConfirmEmailDone";
         public const string TryAgainInAnotherTime = "TryAgainInAnotherTime";
         public const string InvaildCode = "InvaildCode";
-
-
-
-
-
-
+        public const string Image = "Image";
+        public const string InvaildImageSize = "InvaildImageSize";
+        public const string InvaildImageExtension = "InvaildImageExtension";
+        public const string FailedToUploadImage = "FailedToUploadImage";
 
 
 

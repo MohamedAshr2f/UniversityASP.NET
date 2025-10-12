@@ -171,8 +171,20 @@
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>فشلت عملية تعديل دور المستخدم</value>
   </data>
+  <data name="FailedToUploadImage" xml:space="preserve">
+    <value>فشل عملية اضافة الصورة</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>الصورة</value>
+  </data>
   <data name="InvaildCode" xml:space="preserve">
     <value>كود خطأ</value>
+  </data>
+  <data name="InvaildImageExtension" xml:space="preserve">
+    <value>نوع الصورة خطأ (.jpg,.jpeg,.png)</value>
+  </data>
+  <data name="InvaildImageSize" xml:space="preserve">
+    <value>حجم صورة غير مناسب ,الحجم المناسب هو 2 ميجابايت</value>
   </data>
   <data name="IsExist" xml:space="preserve">
     <value>الاسم موجود</value>

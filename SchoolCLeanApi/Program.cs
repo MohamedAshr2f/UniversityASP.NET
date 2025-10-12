@@ -1,5 +1,4 @@
 ﻿
-using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +14,7 @@ using School.Infrastructure;
 using School.Infrastructure.ApplicationContext;
 using School.Infrastructure.Seeder;
 using School.Service;
+using System.Globalization;
 
 
 
@@ -113,6 +113,8 @@ app.UseCors(CORS);
 var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(options.Value);
 #endregion
+
+app.UseStaticFiles();
 app.UseAuthentication();
 
 app.UseAuthorization();

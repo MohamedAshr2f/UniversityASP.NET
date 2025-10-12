@@ -15,10 +15,8 @@
   <ItemGroup>
     <Folder Include="Features\Email\Query\Handler\" />
     <Folder Include="Features\Email\Query\Models\" />
-    <Folder Include="Features\Instructors\Command\Handler\" />
-    <Folder Include="Features\Instructors\Command\Models\" />
-    <Folder Include="Features\Instructors\Command\Validations\" />
     <Folder Include="Features\Subjects\Command\" />
+    <Folder Include="Mapping\Instructors\QueryMapping\" />
     <Folder Include="Mapping\Subjects\CommandMapping\" />
   </ItemGroup>
 

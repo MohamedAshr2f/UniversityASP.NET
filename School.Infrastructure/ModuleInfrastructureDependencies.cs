@@ -26,6 +26,9 @@ namespace School.Infrastructure
 
             //functions
             services.AddTransient<IInstructorFunctionsRepository, InstructorFunctionsRepository>();
+
+            services.AddTransient<IInstructorRepository, InstructorRepository>();
+
             return services;
 
         }

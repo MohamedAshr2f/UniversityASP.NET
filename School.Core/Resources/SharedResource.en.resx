@@ -171,8 +171,20 @@
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>FailedT o Update UserRoles</value>
   </data>
+  <data name="FailedToUploadImage" xml:space="preserve">
+    <value>FailedToUploadImage</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
   <data name="InvaildCode" xml:space="preserve">
     <value>InvaildCode</value>
+  </data>
+  <data name="InvaildImageExtension" xml:space="preserve">
+    <value>Invalid Image Extension (.jpg,.jpeg,.png)</value>
+  </data>
+  <data name="InvaildImageSize" xml:space="preserve">
+    <value>  Invalid Image Size, Size= 2Mb </value>
   </data>
   <data name="IsExist" xml:space="preserve">
     <value>Name Is Exist</value>
