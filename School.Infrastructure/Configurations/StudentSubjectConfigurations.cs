@@ -20,6 +20,8 @@ namespace School.Infrastructure.Configurations
                  .WithMany(d => d.StudentsSubjects)
                  .HasForeignKey(ds => ds.SubID);
 
+            builder.Property(x => x.grade).HasColumnType("decimal(18,2)");
+
         }
     }
 }
