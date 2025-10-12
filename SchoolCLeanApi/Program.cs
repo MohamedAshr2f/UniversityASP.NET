@@ -14,11 +14,8 @@ using School.Infrastructure;
 using School.Infrastructure.ApplicationContext;
 using School.Infrastructure.Seeder;
 using School.Service;
+using Serilog;
 using System.Globalization;
-
-
-
-
 
 
 
@@ -88,6 +85,20 @@ builder.Services.AddTransient<IUrlHelper>(x =>
 
 builder.Services.AddTransient<AuthFilter>();
 
+// Serilog
+/*Log.Logger = new LoggerConfiguration()
+              .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+builder.Services.AddSerilog();*/
+
+//serilog from chatgpt
+#region serilog from chatgpt
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Host.UseSerilog();
+#endregion
+
 var app = builder.Build();
 
 #region DataSeeder
@@ -99,6 +110,8 @@ using (var scope = app.Services.CreateScope())
     await UserSeeder.SeedAsync(userManager);
 }
 #endregion
+
+//app.UseSerilogRequestLogging() شغلها لو عاوز تتبع كل عمليات السيتم ;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

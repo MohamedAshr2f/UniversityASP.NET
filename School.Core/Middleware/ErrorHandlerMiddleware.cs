@@ -1,9 +1,10 @@
-﻿using System.Net;
-using System.Text.Json;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using School.Core.Bases;
+using Serilog;
+using System.Net;
+using System.Text.Json;
 
 
 namespace School.Core.Middleware
@@ -28,6 +29,7 @@ namespace School.Core.Middleware
                 var response = context.Response;
                 response.ContentType = "application/json";
                 var responseModel = new Response<string>() { Succeeded = false, Message = error?.Message };
+                Log.Error(error, error.Message, context.Request, "");
                 //TODO:: cover all validation errors
                 switch (error)
                 {

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="4.14.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 

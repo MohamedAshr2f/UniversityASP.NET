@@ -4,6 +4,7 @@ using School.Data.Entities;
 using School.Infrastructure.Abstracts;
 using School.Infrastructure.Abstracts.Functions;
 using School.Service.Abstracts;
+using Serilog;
 
 namespace School.Service.Implementions
 {
@@ -26,6 +27,7 @@ namespace School.Service.Implementions
 
         public async Task<string> AddInstructorAsync(Instructor instructor, IFormFile file)
         {
+            Log.Information("✅ Request received at {Time}", DateTime.Now);
             var context = _httpContextAccessor.HttpContext.Request;
             var baseUrl = context.Scheme + "://" + context.Host;
             var imageUrl = await _fileService.UploadImage("Instructors", file);
@@ -39,14 +41,16 @@ namespace School.Service.Implementions
                 await _instructorsRepository.AddAsync(instructor);
                 return "Success";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "FailedInAdd";
+                Log.Error(ex.Message, "❌ Error occurred at {Time}", DateTime.Now);
             }
         }
 
         public async Task<decimal> GetSalarySummationOfInstructor()
         {
+            Log.Information("✅ Request Get Salary_oF_Ins received at {Time}", DateTime.Now);
             decimal result = 0;
             result = _instructorFunctionsRepository.GetSalarySummationOfInstructor("select dbo.GetSalarySummation()");
             return result;
