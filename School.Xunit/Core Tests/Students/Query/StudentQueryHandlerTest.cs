@@ -69,6 +69,30 @@ namespace School.Xunit.Core_Tests.Students.Query
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
             result.Data.Should().BeNull();
             result.Succeeded.Should().BeFalse();
+        }
+        [Theory]
+        [InlineData(1)]
+        public async Task Handle_StudentSingleByID_Where_Student_Found_Return_statuscode200(int id)
+        {
+            // Arrange
+            var department = new Department() { DID = 1, DNameAr = "علوم", DNameEn = "Science" };
+            var studentList = new List<Student>()
+            {
+                new Student(){ StudID=1, Address="Alex", DID=1, NameAr="محمد",NameEn="mohamed",Department=department},
+                new Student(){ StudID=2, Address="Cairo", DID=1, NameAr="علي",NameEn="Ali", Department=department}
+            };
+            var query = new GetStudentSingleQuery(id);
+            _studentServiceMock.Setup(x => x.GetStudentByIdAsync(id)).Returns(Task.FromResult(studentList.FirstOrDefault(x => x.StudID == id)));
+            var handler = new StudentQueryHandler(_studentServiceMock.Object, _mapperMock, _stringLocalizerMock.Object);
+            // Act
+            var result = await handler.Handle(query, default);
+            // Assert
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+            result.Data.Should().NotBeNull();
+            result.Succeeded.Should().BeTrue();
+            result.Data.Should().BeOfType<GetStudentSingleResponse>();
+            result.Data.StudentID.Should().Be(id);
+            result.Data.StudentName.Should().Be(studentList.FirstOrDefault(x => x.StudID == id).NameEn);
 
         }
     }
