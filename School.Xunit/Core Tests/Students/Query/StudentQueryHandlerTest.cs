@@ -9,6 +9,7 @@ using School.Core.Mapping.Students;
 using School.Core.Resources;
 using School.Data.Entities;
 using School.Service.Abstracts;
+using System.Net;
 
 namespace School.Xunit.Core_Tests.Students.Query
 {
@@ -46,6 +47,28 @@ namespace School.Xunit.Core_Tests.Students.Query
             result.Data.Should().NotBeNullOrEmpty();
             result.Succeeded.Should().BeTrue();
             result.Data.Should().BeOfType<List<GetStudentListResponse>>();
+
+        }
+        [Theory]
+        [InlineData(3)]
+        public async Task Handle_StudentSingleByID_Where_Student_notfound_Return_statuscode404(int id)
+        {
+            // Arrange
+            var department = new Department() { DID = 1, DNameAr = "علوم", DNameEn = "Science" };
+            var studentList = new List<Student>()
+            {
+                new Student(){ StudID=1, Address="Alex", DID=1, NameAr="محمد",NameEn="mohamed",Department=department},
+                new Student(){ StudID=2, Address="Cairo", DID=1, NameAr="علي",NameEn="Ali", Department=department}
+            };
+            var query = new GetStudentSingleQuery(id);
+            _studentServiceMock.Setup(x => x.GetStudentByIdAsync(id)).Returns(Task.FromResult(studentList.FirstOrDefault(x => x.StudID == id)));
+            var handler = new StudentQueryHandler(_studentServiceMock.Object, _mapperMock, _stringLocalizerMock.Object);
+            // Act
+            var result = await handler.Handle(query, default);
+            // Assert
+            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            result.Data.Should().BeNull();
+            result.Succeeded.Should().BeFalse();
 
         }
     }
