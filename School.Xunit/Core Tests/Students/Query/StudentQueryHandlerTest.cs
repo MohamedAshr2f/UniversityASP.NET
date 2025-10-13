@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EntityFrameworkCore.Testing.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Localization;
 using Moq;
@@ -8,8 +9,10 @@ using School.Core.Features.Students.Query.Results;
 using School.Core.Mapping.Students;
 using School.Core.Resources;
 using School.Data.Entities;
+using School.Data.Enums;
 using School.Service.Abstracts;
 using System.Net;
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, MaxParallelThreads = 6)]
 
 namespace School.Xunit.Core_Tests.Students.Query
 {
@@ -48,6 +51,7 @@ namespace School.Xunit.Core_Tests.Students.Query
             result.Succeeded.Should().BeTrue();
             result.Data.Should().BeOfType<List<GetStudentListResponse>>();
 
+
         }
         [Theory]
         [InlineData(3)]
@@ -69,6 +73,7 @@ namespace School.Xunit.Core_Tests.Students.Query
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
             result.Data.Should().BeNull();
             result.Succeeded.Should().BeFalse();
+
         }
         [Theory]
         [InlineData(1)]
@@ -94,6 +99,37 @@ namespace School.Xunit.Core_Tests.Students.Query
             result.Data.StudentID.Should().Be(id);
             result.Data.StudentName.Should().Be(studentList.FirstOrDefault(x => x.StudID == id).NameEn);
 
+
+        }
+        [Fact]
+        public async Task Handle_StudentPaginated_Should_NotNull_And_NotEmpty()
+        {
+            //arrange
+            var department = new Department() { DID = 1, DNameAr = "علوم", DNameEn = "Science" };
+            var studentList = new AsyncEnumerable<Student>(new List<Student>
+            {
+                new Student(){ StudID=1, Address="Alex", DID=1, NameAr="محمد",NameEn="mohamed",Department=department},
+                new Student(){ StudID=2, Address="Cairo", DID=1, NameAr="علي",NameEn="Ali", Department=department},
+                new Student(){ StudID=3, Address="Giza", DID=1, NameAr="يوسف",NameEn="Youssef", Department=department},
+                new Student(){ StudID=4, Address="Tanta", DID=1, NameAr="اسلام",NameEn="Islam", Department=department},
+                new Student(){ StudID=5, Address="Mansoura", DID=1, NameAr="محمود",NameEn="Mahmoud", Department=department}
+            });
+            var query = new GetStudentPaginatedListQuery() { PageNumber = 1, PageSize = 2, OrderBy = StudentOrderingEnum.StudentID, Search = "mohamed" };
+            _studentServiceMock.Setup(x => x.FilterStudentPaginatedQuerable(query.Search, query.OrderBy)).Returns(studentList.AsQueryable());
+            var handler = new StudentQueryHandler(_studentServiceMock.Object, _mapperMock, _stringLocalizerMock.Object);
+
+            //act
+            var result = await handler.Handle(query, default);
+
+            //assert
+            result.Data.Should().NotBeNullOrEmpty();
+            result.Data.Should().BeOfType<List<GetStudentPaginatedListResponse>>();
+
+        }
+
+        private IQueryable<T> AsyncEnumerable<T>()
+        {
+            throw new NotImplementedException();
         }
     }
 }
