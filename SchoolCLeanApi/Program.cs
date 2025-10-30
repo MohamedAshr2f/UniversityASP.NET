@@ -111,7 +111,7 @@ using (var scope = app.Services.CreateScope())
 }
 #endregion
 
-//app.UseSerilogRequestLogging() شغلها لو عاوز تتبع كل عمليات السيتم ;
+app.UseSerilogRequestLogging(); // Serilog request logging for All System Operations
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
