@@ -47,7 +47,7 @@ namespace School.Service.Implementions
         public async Task<List<Department>> GetDepartmentListAsync()
         {
             // return await _DepartmentRepository.GetDepartmentListAsync();
-            var departments = await _DepartmentRepository.GetTableNoTracking().Include(d => d.Students)
+            var departments = await _DepartmentRepository.GetTableNoTracking().AsSplitQuery().Include(d => d.Students)
                  .ThenInclude(s => s.StudentSubject)
                  .ThenInclude(ss => ss.Subject)
                  .Include(d => d.departmentsubjects)
