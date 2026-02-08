@@ -64,8 +64,8 @@ This project implements advanced design patterns such as CQRS (Command Query Res
 ## 📁 Project Architecture
 
 ```text
-Domain
-Application
+Data
 Infrastructure
-Persistence
+Service
+Core
 API
